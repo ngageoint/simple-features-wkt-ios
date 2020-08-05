@@ -11,5 +11,8 @@
 
 #import "sf-ios-Bridging-Header.h"
 #import "sf_wkt_ios.h"
+#import "SFWTGeometryReader.h"
+#import "SFWTGeometryTypeInfo.h"
+#import "SFWTGeometryWriter.h"
 
 #endif /* sf_wkt_ios_Bridging_Header_h */
