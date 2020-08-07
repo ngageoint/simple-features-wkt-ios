@@ -23,7 +23,7 @@
 }
 
 +(SFGeometry *) readGeometryWithText: (NSString *) text andFilter: (NSObject<SFGeometryFilter> *) filter andExpectedType: (Class) expectedType{
-    SFTextReader *reader = [[SFTextReader alloc] init];
+    SFTextReader *reader = [[SFTextReader alloc] initWithText:text];
     return [self readGeometryWithReader:reader andFilter:filter andExpectedType:expectedType];
 }
 
@@ -629,7 +629,7 @@
     
     BOOL nonEmpty;
     
-    NSString *token = [reader peekToken];
+    NSString *token = [reader readToken];
     NSString *tokenUpper = [token uppercaseString];
     
     if([tokenUpper isEqualToString:@"EMPTY"]){
@@ -654,7 +654,7 @@
     
     BOOL comma;
     
-    NSString *token = [reader peekToken];
+    NSString *token = [reader readToken];
     NSString *tokenUpper = [token uppercaseString];
     
     if([tokenUpper isEqualToString:@","]){
@@ -675,7 +675,7 @@
  *            text reader
  */
 +(void) rightParenthesis: (SFTextReader *) reader{
-    NSString *token = [reader peekToken];
+    NSString *token = [reader readToken];
     if (![token isEqualToString:@")"]) {
         [NSException raise:@"Invalid Token" format:@"Invalid token, expected ')'. found: '%@'", token];
     }

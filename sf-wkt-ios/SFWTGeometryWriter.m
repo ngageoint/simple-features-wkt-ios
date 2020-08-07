@@ -18,6 +18,77 @@
 
 +(void) writeGeometry: (SFGeometry *) geometry toString: (NSMutableString *) string{
     
+    enum SFGeometryType geometryType = geometry.geometryType;
+    
+    // Write the geometry type
+    [string appendFormat:@"%@ ", [SFGeometryTypes name:geometryType]];
+
+    BOOL hasZ = geometry.hasZ;
+    BOOL hasM = geometry.hasM;
+
+    if (hasZ || hasM) {
+        if (hasZ) {
+            [string appendString:@"Z"];
+        }
+        if (hasM) {
+            [string appendString:@"M"];
+        }
+        [string appendString:@" "];
+    }
+    
+    switch (geometryType) {
+            
+        case SF_GEOMETRY:
+            [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
+        case SF_POINT:
+            [self writeWrappedPoint:(SFPoint *)geometry toString:string];
+            break;
+        case SF_LINESTRING:
+            [self writeLineString:(SFLineString *)geometry toString:string];
+            break;
+        case SF_POLYGON:
+            [self writePolygon:(SFPolygon *)geometry toString:string];
+            break;
+        case SF_MULTIPOINT:
+            [self writeMultiPoint:(SFMultiPoint *)geometry toString:string];
+            break;
+        case SF_MULTILINESTRING:
+            [self writeMultiLineString:(SFMultiLineString *)geometry toString:string];
+            break;
+        case SF_MULTIPOLYGON:
+            [self writeMultiPolygon:(SFMultiPolygon *)geometry toString:string];
+            break;
+        case SF_GEOMETRYCOLLECTION:
+        case SF_MULTICURVE:
+        case SF_MULTISURFACE:
+            [self writeGeometryCollection:(SFGeometryCollection *)geometry toString:string];
+            break;
+        case SF_CIRCULARSTRING:
+            [self writeCircularString:(SFCircularString *)geometry toString:string];
+            break;
+        case SF_COMPOUNDCURVE:
+            [self writeCompoundCurve:(SFCompoundCurve *)geometry toString:string];
+            break;
+        case SF_CURVEPOLYGON:
+            [self writeCurvePolygon:(SFCurvePolygon *)geometry toString:string];
+            break;
+        case SF_CURVE:
+            [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
+        case SF_SURFACE:
+            [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
+        case SF_POLYHEDRALSURFACE:
+            [self writePolyhedralSurface:(SFPolyhedralSurface *)geometry toString:string];
+            break;
+        case SF_TIN:
+            [self writeTIN:(SFTIN *)geometry toString:string];
+            break;
+        case SF_TRIANGLE:
+            [self writeTriangle:(SFTriangle *)geometry toString:string];
+            break;
+        default:
+            [NSException raise:@"Geometry Not Supported" format:@"Geometry Type not supported: %d", geometryType];
+    }
+    
 }
 
 +(NSString *) writeWrappedPoint: (SFPoint *) point{
