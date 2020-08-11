@@ -336,6 +336,10 @@
 }
 
 +(void) compareTextWithExpected: (NSString *) expected andActual: (NSString *) actual{
+    [self compareTextWithExpected:expected andActual:actual andDelta:0];
+}
+
++(void) compareTextWithExpected: (NSString *) expected andActual: (NSString *) actual andDelta: (double) delta{
     
     SFTextReader *reader1 = [[SFTextReader alloc] initWithText:expected];
     SFTextReader *reader2 = [[SFTextReader alloc] initWithText:actual];
@@ -346,7 +350,7 @@
         if([token1 caseInsensitiveCompare:token2] != NSOrderedSame){
             double token1Double = [token1 doubleValue];
             double token2Double = [token2 doubleValue];
-            [SFWTTestUtils assertEqualDoubleWithValue:token1Double andValue2:token2Double andDelta:0];
+            [SFWTTestUtils assertEqualDoubleWithValue:token1Double andValue2:token2Double andDelta:delta];
         }
     }
     

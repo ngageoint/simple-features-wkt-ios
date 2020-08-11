@@ -10,6 +10,14 @@
 
 @implementation SFWTGeometryWriter
 
+static double DECIMAL_NUMBER_INFINITY;
+static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
+
++(void) initialize{
+    DECIMAL_NUMBER_INFINITY = [[[NSDecimalNumber alloc] initWithDouble:INFINITY] doubleValue];
+    DECIMAL_NUMBER_NEGATIVE_INFINITY = [[[NSDecimalNumber alloc] initWithDouble:-INFINITY] doubleValue];
+}
+
 +(NSString *) writeGeometry: (SFGeometry *) geometry{
     NSMutableString *text = [NSMutableString string];
     [self writeGeometry:geometry toString:text];
@@ -112,17 +120,19 @@
 }
 
 +(void) writePoint: (SFPoint *) point toString: (NSMutableString *) string{
-    
-    [string appendFormat:@"%f", [point.x doubleValue]];
+
+    [self writeValue:point.x toString:string];
     [string appendString:@" "];
-    [string appendFormat:@"%f", [point.y doubleValue]];
+    [self writeValue:point.y toString:string];
     
     if([point hasZ]){
-        [string appendFormat:@" %f", [point.z doubleValue]];
+        [string appendString:@" "];
+        [self writeValue:point.z toString:string];
     }
     
     if([point hasM]){
-        [string appendFormat:@" %f", [point.m doubleValue]];
+        [string appendString:@" "];
+        [self writeValue:point.m toString:string];
     }
     
 }
@@ -425,6 +435,29 @@
         [string appendString:@")"];
     }
     
+}
+
+/**
+ * Write the value
+ *
+ * @param value decimal number
+ * @param string mutable string
+ */
++(void) writeValue: (NSDecimalNumber *) value toString: (NSMutableString *) string{
+    if(value == nil){
+        [string appendString:@"NaN"];
+    }else{
+        double doubleValue = [value doubleValue];
+        if(isnan(doubleValue)){
+            [string appendString:@"NaN"];
+        }else if(doubleValue >= DECIMAL_NUMBER_INFINITY){
+            [string appendString:@"infinity"];
+        }else if(doubleValue <= DECIMAL_NUMBER_NEGATIVE_INFINITY){
+            [string appendString:@"-infinity"];
+        }else{
+            [string appendFormat:@"%@", [NSNumber numberWithDouble:doubleValue]];
+        }
+    }
 }
 
 /**

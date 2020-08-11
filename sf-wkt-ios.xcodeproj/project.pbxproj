@@ -21,6 +21,7 @@
 		0485565B24DD6C9500810C6D /* SFWTGeometryTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485565A24DD6C9500810C6D /* SFWTGeometryTestUtils.m */; };
 		0485565E24DD8B4700810C6D /* SFWTReadmeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485565D24DD8B4700810C6D /* SFWTReadmeTest.m */; };
 		0485566124DDD0F500810C6D /* SFWTSwiftReadmeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485566024DDD0F500810C6D /* SFWTSwiftReadmeTest.swift */; };
+		0485566324DDEF7300810C6D /* SFWTTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485566224DDEF7300810C6D /* SFWTTestCase.m */; };
 		B4B9C5C590F6D09B45DC2BDB /* libPods-sf-wkt-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9A70C9172FC5893F17C0FB6 /* libPods-sf-wkt-ios.a */; };
 		B5D94958E350F092F31540ED /* libPods-sf-wkt-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-sf-wkt-iosTests.a */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		0485565D24DD8B4700810C6D /* SFWTReadmeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFWTReadmeTest.m; sourceTree = "<group>"; };
 		0485565F24DDD0F400810C6D /* sf-wkt-iosTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sf-wkt-iosTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0485566024DDD0F500810C6D /* SFWTSwiftReadmeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFWTSwiftReadmeTest.swift; sourceTree = "<group>"; };
+		0485566224DDEF7300810C6D /* SFWTTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFWTTestCase.m; sourceTree = "<group>"; };
 		192D9E5452A64EB6A7955A5A /* Pods-sf-wkt-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sf-wkt-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-sf-wkt-ios/Pods-sf-wkt-ios.release.xcconfig"; sourceTree = "<group>"; };
 		457018C9103A514A78925D9E /* Pods-sf-wkt-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sf-wkt-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sf-wkt-ios/Pods-sf-wkt-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-sf-wkt-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sf-wkt-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 				0485565D24DD8B4700810C6D /* SFWTReadmeTest.m */,
 				0485566024DDD0F500810C6D /* SFWTSwiftReadmeTest.swift */,
 				0485565F24DDD0F400810C6D /* sf-wkt-iosTests-Bridging-Header.h */,
+				0485566224DDEF7300810C6D /* SFWTTestCase.m */,
 				0485565624DD6A9F00810C6D /* SFWTTestUtils.h */,
 				0485565724DD6A9F00810C6D /* SFWTTestUtils.m */,
 				0485565924DD6C9500810C6D /* SFWTGeometryTestUtils.h */,
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0485565E24DD8B4700810C6D /* SFWTReadmeTest.m in Sources */,
+				0485566324DDEF7300810C6D /* SFWTTestCase.m in Sources */,
 				0485565824DD6A9F00810C6D /* SFWTTestUtils.m in Sources */,
 				0485565B24DD6C9500810C6D /* SFWTGeometryTestUtils.m in Sources */,
 				0485566124DDD0F500810C6D /* SFWTSwiftReadmeTest.swift in Sources */,

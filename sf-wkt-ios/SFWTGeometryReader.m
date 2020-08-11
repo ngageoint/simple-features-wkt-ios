@@ -416,12 +416,12 @@
                  curve = [self readLineStringWithReader:reader andFilter:filter andHasZ:hasZ andHasM:hasM];
                  if(![self filter:filter geometry:curve inType:SF_MULTICURVE]){
                      curve = nil;
-                 }else{
-                     curve = (SFCurve *)[self readGeometryWithReader:reader andFilter:filter inType:SF_MULTICURVE andExpectedType:[SFCurve class]];
                  }
-                 if(curve != nil){
-                     [multiCurve addGeometry:curve];
-                 }
+             }else{
+                 curve = (SFCurve *)[self readGeometryWithReader:reader andFilter:filter inType:SF_MULTICURVE andExpectedType:[SFCurve class]];
+             }
+             if(curve != nil){
+                 [multiCurve addGeometry:curve];
              }
          } while ([self commaOrRightParenthesis:reader]);
          
@@ -444,12 +444,12 @@
                 surface = [self readPolygonWithReader:reader andFilter:filter andHasZ:hasZ andHasM:hasM];
                 if(![self filter:filter geometry:surface inType:SF_MULTISURFACE]){
                     surface = nil;
-                }else{
-                    surface = (SFSurface *)[self readGeometryWithReader:reader andFilter:filter inType:SF_MULTISURFACE andExpectedType:[SFSurface class]];
                 }
-                if(surface != nil){
-                    [multiSurface addGeometry:surface];
-                }
+            }else{
+                surface = (SFSurface *)[self readGeometryWithReader:reader andFilter:filter inType:SF_MULTISURFACE andExpectedType:[SFSurface class]];
+            }
+            if(surface != nil){
+                [multiSurface addGeometry:surface];
             }
         } while ([self commaOrRightParenthesis:reader]);
         
@@ -500,12 +500,12 @@
                 lineString = [self readLineStringWithReader:reader andFilter:filter andHasZ:hasZ andHasM:hasM];
                 if(![self filter:filter geometry:lineString inType:SF_COMPOUNDCURVE]){
                     lineString = nil;
-                }else{
-                    lineString = (SFLineString *)[self readGeometryWithReader:reader andFilter:filter inType:SF_COMPOUNDCURVE andExpectedType:[SFLineString class]];
                 }
-                if(lineString != nil){
-                    [compoundCurve addLineString:lineString];
-                }
+            }else{
+                lineString = (SFLineString *)[self readGeometryWithReader:reader andFilter:filter inType:SF_COMPOUNDCURVE andExpectedType:[SFLineString class]];
+            }
+            if(lineString != nil){
+                [compoundCurve addLineString:lineString];
             }
         } while ([self commaOrRightParenthesis:reader]);
         
@@ -532,12 +532,12 @@
                 ring = [self readLineStringWithReader:reader andFilter:filter andHasZ:hasZ andHasM:hasM];
                 if(![self filter:filter geometry:ring inType:SF_CURVEPOLYGON]){
                     ring = nil;
-                }else{
-                    ring = (SFCurve *)[self readGeometryWithReader:reader andFilter:filter inType:SF_CURVEPOLYGON andExpectedType:[SFCurve class]];
                 }
-                if(ring != nil){
-                    [curvePolygon addRing:ring];
-                }
+            }else{
+                ring = (SFCurve *)[self readGeometryWithReader:reader andFilter:filter inType:SF_CURVEPOLYGON andExpectedType:[SFCurve class]];
+            }
+            if(ring != nil){
+                [curvePolygon addRing:ring];
             }
         } while ([self commaOrRightParenthesis:reader]);
         

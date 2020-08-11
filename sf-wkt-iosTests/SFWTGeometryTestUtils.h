@@ -98,6 +98,8 @@
 
 +(void) compareTextWithExpected: (NSString *) expected andActual: (NSString *) actual;
 
++(void) compareTextWithExpected: (NSString *) expected andActual: (NSString *) actual andDelta: (double) delta;
+
 +(SFPoint *) createPointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 +(SFLineString *) createLineStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
