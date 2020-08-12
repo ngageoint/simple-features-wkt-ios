@@ -21,7 +21,10 @@ View the latest [Appledoc](http://ngageoint.github.io/simple-features-wkt-ios/do
 
 ```objectivec
 
-// TODO
+// NSString *text = ...
+
+SFGeometry *geometry = [SFWTGeometryReader readGeometryWithText:text];
+enum SFGeometryType geometryType = geometry.geometryType;
 
 ```
 
@@ -29,7 +32,9 @@ View the latest [Appledoc](http://ngageoint.github.io/simple-features-wkt-ios/do
 
 ```objectivec
 
-// TODO
+// SFGeometry *geometry = ...
+
+NSString *text = [SFWTGeometryWriter writeGeometry:geometry];
 
 ```
 
@@ -77,7 +82,10 @@ To use from Swift, import the sf-wkt-ios bridging header from the Swift project'
 
 ```swift
 
-// TODO
+// var text: String = ...
+
+let geometry: SFGeometry = SFWTGeometryReader.readGeometry(withText: text)
+let geometryType: SFGeometryType = geometry.geometryType
 
 ```
 
@@ -85,7 +93,9 @@ To use from Swift, import the sf-wkt-ios bridging header from the Swift project'
 
 ```swift
 
-// TODO
+// let geometry: SFGeometry = ...
+
+let text: String = SFWTGeometryWriter.write(geometry)
 
 ```
 
