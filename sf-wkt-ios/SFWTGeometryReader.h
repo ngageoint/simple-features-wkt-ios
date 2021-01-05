@@ -71,6 +71,27 @@
 +(SFGeometry *) readGeometryWithText: (NSString *) text andFilter: (NSObject<SFGeometryFilter> *) filter andExpectedType: (Class) expectedType;
 
 /**
+ * Initializer
+ *
+ * @param text well-known text
+ */
+-(instancetype) initWithText: (NSString *) text;
+
+/**
+ * Initializer
+ *
+ * @param reader text reader
+ */
+-(instancetype) initWithReader: (SFTextReader *) reader;
+
+/**
+ * Get the text reader
+ *
+ * @return text reader
+ */
+-(SFTextReader *) textReader;
+
+/**
  *  Read a geometry
  *
  *  @param reader text reader

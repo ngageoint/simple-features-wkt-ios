@@ -8,6 +8,15 @@
 
 #import "SFWTGeometryReader.h"
 
+@interface SFWTGeometryReader()
+
+/**
+ * Text Reader
+ */
+@property (nonatomic, strong) SFTextReader *reader;
+
+@end
+
 @implementation SFWTGeometryReader
 
 +(SFGeometry *) readGeometryWithText: (NSString *) text{
@@ -23,9 +32,704 @@
 }
 
 +(SFGeometry *) readGeometryWithText: (NSString *) text andFilter: (NSObject<SFGeometryFilter> *) filter andExpectedType: (Class) expectedType{
-    SFTextReader *reader = [[SFTextReader alloc] initWithText:text];
-    return [self readGeometryWithReader:reader andFilter:filter andExpectedType:expectedType];
+    SFWTGeometryReader *reader = [[SFWTGeometryReader alloc] initWithText:text];
+    return [reader readWithFilter:filter andExpectedType:expectedType];
 }
+
+-(instancetype) initWithText: (NSString *) text{
+    return [self initWithReader:[[SFTextReader alloc] initWithText:text]];
+}
+
+-(instancetype) initWithReader: (SFTextReader *) reader{
+    self = [super init];
+    if(self != nil){
+        _reader = reader;
+    }
+    return self;
+}
+
+-(SFTextReader *) textReader{
+    return _reader;
+}
+
+-(SFGeometry *) read{
+    return [self readWithFilter:nil andExpectedType:nil];
+}
+
+-(SFGeometry *) readWithFilter: (NSObject<SFGeometryFilter> *) filter{
+    return [self readWithFilter:filter andExpectedType:nil];
+}
+
+-(SFGeometry *) readWithExpectedType: (Class) expectedType{
+    return [self readWithFilter:nil andExpectedType:expectedType];
+}
+
+-(SFGeometry *) readWithFilter: (NSObject<SFGeometryFilter> *) filter andExpectedType: (Class) expectedType{
+    return [self readWithFilter:filter inType:SF_NONE andExpectedType:expectedType];
+}
+
+-(SFGeometry *) readWithFilter: (NSObject<SFGeometryFilter> *) filter inType: (enum SFGeometryType) containingType andExpectedType: (Class) expectedType{
+    
+    SFGeometry *geometry = nil;
+    
+    // Read the geometry type
+    SFWTGeometryTypeInfo *geometryTypeInfo = [self readGeometryType];
+    
+    if(geometryTypeInfo != nil){
+        
+        enum SFGeometryType geometryType = [geometryTypeInfo geometryType];
+        BOOL hasZ = [geometryTypeInfo hasZ];
+        BOOL hasM = [geometryTypeInfo hasM];
+        
+        switch(geometryType){
+        
+            case SF_GEOMETRY:
+                [NSException raise:@"Unexpected Geometry" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
+            case SF_POINT:
+                geometry = [self readPointTextWithHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_LINESTRING:
+                geometry = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_POLYGON:
+                geometry = [self readPolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_MULTIPOINT:
+                geometry = [self readMultiPointWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_MULTILINESTRING:
+                geometry = [self readMultiLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_MULTIPOLYGON:
+                geometry = [self readMultiPolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_GEOMETRYCOLLECTION:
+                geometry = [self readGeometryCollectionWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_MULTICURVE:
+                geometry = [self readMultiCurveWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_MULTISURFACE:
+                geometry = [self readMultiSurfaceWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_CIRCULARSTRING:
+                geometry = [self readCircularStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_COMPOUNDCURVE:
+                geometry = [self readCompoundCurveWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_CURVEPOLYGON:
+                geometry = [self readCurvePolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_CURVE:
+                [NSException raise:@"Unexpected Geometry" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
+            case SF_SURFACE:
+                [NSException raise:@"Unexpected Geometry" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
+            case SF_POLYHEDRALSURFACE:
+                geometry = [self readPolyhedralSurfaceWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_TIN:
+                geometry = [self readTINWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_TRIANGLE:
+                geometry = [self readTriangleWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                break;
+            case SF_NONE:
+            default:
+                [NSException raise:@"Unsupported Geometry" format:@"Geometry Type not supported: %@", [SFGeometryTypes name:geometryType]];
+        }
+        
+        if(![SFWTGeometryReader filter:filter geometry:geometry inType:containingType]){
+            geometry = nil;
+        }
+        
+        // If there is an expected type, verify the geometry is of that type
+        if (expectedType != nil && geometry != nil && ![geometry isKindOfClass:expectedType]){
+            [NSException raise:@"Unexpected Geometry" format:@"Unexpected Geometry Type. Expected: %@, Actual: %@", expectedType, [geometry class]];
+        }
+        
+    }
+    
+    return geometry;
+}
+
+-(SFWTGeometryTypeInfo *) readGeometryType{
+    
+    SFWTGeometryTypeInfo *geometryInfo = nil;
+    
+    // Read the geometry type
+    NSString *geometryTypeValue = [_reader readToken];
+    
+    if(geometryTypeValue != nil
+       && [geometryTypeValue caseInsensitiveCompare:@"EMPTY"] != NSOrderedSame){
+        
+        BOOL hasZ = NO;
+        BOOL hasM = NO;
+        
+        // Determine the geometry type
+        enum SFGeometryType geometryType = [SFGeometryTypes fromName:geometryTypeValue];
+
+        // If not found, check if the geometry type has Z and/or M suffix
+        if (geometryType == SF_NONE) {
+
+            // Check if the Z and/or M is appended to the geometry type
+            NSString *geomType = [geometryTypeValue uppercaseString];
+            if([geomType hasSuffix:@"Z"]){
+                hasZ = YES;
+            } else if ([geomType hasSuffix:@"M"]) {
+                hasM = YES;
+                if ([geomType hasSuffix:@"ZM"]) {
+                    hasZ = YES;
+                }
+            }
+
+            int suffixSize = 0;
+            if (hasZ) {
+                suffixSize++;
+            }
+            if (hasM) {
+                suffixSize++;
+            }
+
+            if (suffixSize > 0) {
+                // Check for the geometry type without the suffix
+                geomType = [geometryTypeValue substringToIndex:geometryTypeValue.length - suffixSize];
+                geometryType = [SFGeometryTypes fromName:geomType];
+            }
+
+            if (geometryType == SF_NONE) {
+                [NSException raise:@"Unexpected Type" format:@"Expected a valid geometry type, found: '%@'", geometryTypeValue];
+            }
+
+        }
+
+        // Determine if the geometry has a z (3d) or m (linear referencing
+        // system) value
+        if (!hasZ && !hasM) {
+
+            // Peek at the next token without popping it off
+            NSString *next = [_reader peekToken];
+            NSString *nextUpper = [next uppercaseString];
+
+            if([nextUpper isEqualToString:@"Z"]){
+                hasZ = YES;
+            }else if([nextUpper isEqualToString:@"M"]){
+                hasM = YES;
+            }else if([nextUpper isEqualToString:@"ZM"]){
+                hasZ = YES;
+                hasM = YES;
+            }else if(![nextUpper isEqualToString:@"("] && ![nextUpper isEqualToString:@"EMPTY"]){
+                [NSException raise:@"Invalid Value" format:@"Invalid value following geometry type: '%@', value: '%@'", geometryTypeValue, next];
+            }
+
+            if (hasZ || hasM) {
+                // Read off the Z and/or M token
+                [_reader readToken];
+            }
+
+        }
+
+        geometryInfo = [[SFWTGeometryTypeInfo alloc] initWithType:geometryType andHasZ:hasZ andHasM:hasM];
+        
+    }
+    
+    return geometryInfo;
+}
+
+-(SFPoint *) readPointTextWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+
+    SFPoint *point = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        point = [self readPointWithHasZ:hasZ andHasM:hasM];
+        [self rightParenthesis:reader];
+    }
+    
+    return point;
+}
+
+-(SFPoint *) readPointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    double x = [reader readDouble];
+    double y = [reader readDouble];
+    
+    SFPoint *point = [[SFPoint alloc] initWithHasZ:hasZ andHasM:hasM andXValue:x andYValue:y];
+    
+    if(hasZ || hasM){
+        if(hasZ){
+            [point setZValue:[reader readDouble]];
+        }
+        
+        if(hasM){
+            [point setMValue:[reader readDouble]];
+        }
+    } else if(![self isCommaOrRightParenthesis:reader]){
+        
+        [point setZValue:[reader readDouble]];
+        
+        if(![self isCommaOrRightParenthesis:reader]){
+            
+            [point setMValue:[reader readDouble]];
+            
+        }
+        
+    }
+    
+    return point;
+}
+
+-(SFLineString *) readLineStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readLineStringWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFLineString *) readLineStringWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFLineString *lineString = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        lineString = [[SFLineString alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFPoint *point = [self readPointWithHasZ:hasZ andHasM:hasM];
+            if([self filter:filter geometry:point inType:SF_LINESTRING]){
+                [lineString addPoint:point];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return lineString;
+}
+
+-(SFPolygon *) readPolygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readPolygonWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFPolygon *) readPolygonWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFPolygon *polygon = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        polygon = [[SFPolygon alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFLineString *ring = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
+            if([self filter:filter geometry:ring inType:SF_POLYGON]){
+                [polygon addRing:ring];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return polygon;
+}
+
+-(SFMultiPoint *) readMultiPointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readMultiPointWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFMultiPoint *) readMultiPointWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFMultiPoint *multiPoint = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        multiPoint = [[SFMultiPoint alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFPoint *point = nil;
+            if([self isLeftParenthesisOrEmpty:reader]){
+                point = [self readPointTextWithHasZ:hasZ andHasM:hasM];
+            }else{
+                point = [self readPointWithHasZ:hasZ andHasM:hasM];
+            }
+            if([self filter:filter geometry:point inType:SF_MULTIPOINT]){
+                [multiPoint addPoint:point];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return multiPoint;
+}
+
+-(SFMultiLineString *) readMultiLineStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readMultiLineStringWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFMultiLineString *) readMultiLineStringWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFMultiLineString *multiLineString = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        multiLineString = [[SFMultiLineString alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFLineString *lineString = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
+            if([self filter:filter geometry:lineString inType:SF_MULTILINESTRING]){
+                [multiLineString addLineString:lineString];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return multiLineString;
+}
+
+-(SFMultiPolygon *) readMultiPolygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readMultiPolygonWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFMultiPolygon *) readMultiPolygonWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFMultiPolygon *multiPolygon = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        multiPolygon = [[SFMultiPolygon alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFPolygon *polygon = [self readPolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
+            if([self filter:filter geometry:polygon inType:SF_MULTIPOLYGON]){
+                [multiPolygon addPolygon:polygon];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return multiPolygon;
+}
+
+-(SFGeometryCollection *) readGeometryCollectionWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readGeometryCollectionWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFGeometryCollection *) readGeometryCollectionWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFGeometryCollection *geometryCollection = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        geometryCollection = [[SFGeometryCollection alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFGeometry *geometry = [self readGeometryWithFilter:filter inType:SF_GEOMETRYCOLLECTION andExpectedType:[SFGeometry class]];
+            if(geometry != nil){
+                [geometryCollection addGeometry:geometry];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return geometryCollection;
+}
+
+-(SFGeometryCollection *) readMultiCurveWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+     
+     SFGeometryCollection *multiCurve = nil;
+     
+     if([self leftParenthesisOrEmpty:reader]){
+         
+         multiCurve = [[SFGeometryCollection alloc] initWithHasZ:hasZ andHasM:hasM];
+         
+         do {
+             SFCurve *curve = nil;
+             if([self isLeftParenthesisOrEmpty:reader]){
+                 curve = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                 if(![self filter:filter geometry:curve inType:SF_MULTICURVE]){
+                     curve = nil;
+                 }
+             }else{
+                 curve = (SFCurve *)[self readGeometryWithFilter:filter inType:SF_MULTICURVE andExpectedType:[SFCurve class]];
+             }
+             if(curve != nil){
+                 [multiCurve addGeometry:curve];
+             }
+         } while ([self commaOrRightParenthesis:reader]);
+         
+     }
+     
+     return multiCurve;
+ }
+
+-(SFGeometryCollection *) readMultiSurfaceWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFGeometryCollection *multiSurface = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        multiSurface = [[SFGeometryCollection alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFSurface *surface = nil;
+            if([self isLeftParenthesisOrEmpty:reader]){
+                surface = [self readPolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                if(![self filter:filter geometry:surface inType:SF_MULTISURFACE]){
+                    surface = nil;
+                }
+            }else{
+                surface = (SFSurface *)[self readGeometryWithFilter:filter inType:SF_MULTISURFACE andExpectedType:[SFSurface class]];
+            }
+            if(surface != nil){
+                [multiSurface addGeometry:surface];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return multiSurface;
+}
+
+-(SFCircularString *) readCircularStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readCircularStringWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFCircularString *) readCircularStringWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFCircularString *circularString = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        circularString = [[SFCircularString alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFPoint *point = [self readPointWithHasZ:hasZ andHasM:hasM];
+            if([self filter:filter geometry:point inType:SF_CIRCULARSTRING]){
+                [circularString addPoint:point];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return circularString;
+}
+
+-(SFCompoundCurve *) readCompoundCurveWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readCompoundCurveWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFCompoundCurve *) readCompoundCurveWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFCompoundCurve *compoundCurve = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        compoundCurve = [[SFCompoundCurve alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFLineString *lineString = nil;
+            if([self isLeftParenthesisOrEmpty:reader]){
+                lineString = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                if(![self filter:filter geometry:lineString inType:SF_COMPOUNDCURVE]){
+                    lineString = nil;
+                }
+            }else{
+                lineString = (SFLineString *)[self readGeometryWithFilter:filter inType:SF_COMPOUNDCURVE andExpectedType:[SFLineString class]];
+            }
+            if(lineString != nil){
+                [compoundCurve addLineString:lineString];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return compoundCurve;
+}
+
+-(SFCurvePolygon *) readCurvePolygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readCurvePolygonWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFCurvePolygon *) readCurvePolygonWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFCurvePolygon *curvePolygon = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        curvePolygon = [[SFCurvePolygon alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFCurve *ring = nil;
+            if([self isLeftParenthesisOrEmpty:reader]){
+                ring = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
+                if(![self filter:filter geometry:ring inType:SF_CURVEPOLYGON]){
+                    ring = nil;
+                }
+            }else{
+                ring = (SFCurve *)[self readGeometryWithFilter:filter inType:SF_CURVEPOLYGON andExpectedType:[SFCurve class]];
+            }
+            if(ring != nil){
+                [curvePolygon addRing:ring];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return curvePolygon;
+}
+
+-(SFPolyhedralSurface *) readPolyhedralSurfaceWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readPolyhedralSurfaceWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFPolyhedralSurface *) readPolyhedralSurfaceWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFPolyhedralSurface *polyhedralSurface = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        polyhedralSurface = [[SFPolyhedralSurface alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFPolygon *polygon = [self readPolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
+            if([self filter:filter geometry:polygon inType:SF_POLYHEDRALSURFACE]){
+                [polyhedralSurface addPolygon:polygon];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return polyhedralSurface;
+}
+
+-(SFTIN *) readTINWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readTINWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFTIN *) readTINWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFTIN *tin = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        tin = [[SFTIN alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFPolygon *polygon = [self readPolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
+            if([self filter:filter geometry:polygon inType:SF_TIN]){
+                [tin addPolygon:polygon];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return tin;
+}
+
+-(SFTriangle *) readTriangleWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self readTriangleWithFilter:nil andHasZ:hasZ andHasM:hasM];
+}
+
+-(SFTriangle *) readTriangleWithFilter: (NSObject<SFGeometryFilter> *) filter andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFTriangle *triangle = nil;
+    
+    if([self leftParenthesisOrEmpty:reader]){
+        
+        triangle = [[SFTriangle alloc] initWithHasZ:hasZ andHasM:hasM];
+        
+        do {
+            SFLineString *ring = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
+            if([self filter:filter geometry:ring inType:SF_TRIANGLE]){
+                [triangle addRing:ring];
+            }
+        } while ([self commaOrRightParenthesis:reader]);
+        
+    }
+    
+    return triangle;
+}
+
+/**
+ * Read a left parenthesis or empty set
+ *
+ * @return true if not empty
+ */
+-(BOOL) leftParenthesisOrEmpty{
+    
+    BOOL nonEmpty;
+    
+    NSString *token = [reader readToken];
+    NSString *tokenUpper = [token uppercaseString];
+    
+    if([tokenUpper isEqualToString:@"EMPTY"]){
+        nonEmpty = NO;
+    }else if([tokenUpper isEqualToString:@"("]){
+        nonEmpty = YES;
+    }else{
+        [NSException raise:@"Invalid Token" format:@"Invalid token, expected 'EMPTY' or '('. found: '%@'", token];
+    }
+    
+    return nonEmpty;
+}
+
+/**
+ * Read a comma or right parenthesis
+ *
+ * @return true if a comma
+ */
+-(BOOL) commaOrRightParenthesis{
+    
+    BOOL comma;
+    
+    NSString *token = [reader readToken];
+    NSString *tokenUpper = [token uppercaseString];
+    
+    if([tokenUpper isEqualToString:@","]){
+        comma = YES;
+    }else if([tokenUpper isEqualToString:@")"]){
+        comma = NO;
+    }else{
+        [NSException raise:@"Invalid Token" format:@"Invalid token, expected ',' or ')'. found: '%@'", token];
+    }
+    
+    return comma;
+}
+
+/**
+ * Read a right parenthesis
+ */
+-(void) rightParenthesis{
+    NSString *token = [reader readToken];
+    if (![token isEqualToString:@")"]) {
+        [NSException raise:@"Invalid Token" format:@"Invalid token, expected ')'. found: '%@'", token];
+    }
+}
+
+/**
+ * Determine if the next token is either a left parenthesis or empty
+ *
+ * @return true if a left parenthesis or empty
+ */
+-(BOOL) isLeftParenthesisOrEmpty{
+    NSString *token = [[reader peekToken] uppercaseString];
+    return [token isEqualToString:@"EMPTY"] || [token isEqualToString:@"("];
+}
+
+/**
+ * Determine if the next token is either a comma or right parenthesis
+ *
+ * @return true if a comma
+ */
+-(BOOL) isCommaOrRightParenthesis{
+    NSString *token = [reader peekToken];
+    return [token isEqualToString:@","] || [token isEqualToString:@")"];
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 +(SFGeometry *) readGeometryWithReader: (SFTextReader *) reader{
     return [self readGeometryWithReader:reader andFilter:nil andExpectedType:nil];
