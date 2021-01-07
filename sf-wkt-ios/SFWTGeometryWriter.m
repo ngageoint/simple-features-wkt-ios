@@ -8,6 +8,15 @@
 
 #import "SFWTGeometryWriter.h"
 
+@interface SFWTGeometryWriter()
+
+/**
+ * Text
+ */
+@property (nonatomic, strong) NSMutableString *text;
+
+@end
+
 @implementation SFWTGeometryWriter
 
 static double DECIMAL_NUMBER_INFINITY;
@@ -19,29 +28,45 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
 }
 
 +(NSString *) writeGeometry: (SFGeometry *) geometry{
-    NSMutableString *text = [NSMutableString string];
-    [self writeGeometry:geometry toString:text];
-    return text;
+    SFWTGeometryWriter *writer = [[SFWTGeometryWriter alloc] init];
+    [writer write:geometry];
+    return writer.text;
 }
 
-+(void) writeGeometry: (SFGeometry *) geometry toString: (NSMutableString *) string{
+-(instancetype) init{
+    return [self initWithText:[NSMutableString string]];
+}
+
+-(instancetype) initWithText: (NSMutableString *) text{
+    self = [super init];
+    if(self != nil){
+        _text = text;
+    }
+    return self;
+}
+
+-(NSMutableString *) text{
+    return _text;
+}
+
+-(void) write: (SFGeometry *) geometry{
     
     enum SFGeometryType geometryType = geometry.geometryType;
     
     // Write the geometry type
-    [string appendFormat:@"%@ ", [SFGeometryTypes name:geometryType]];
+    [_text appendFormat:@"%@ ", [SFGeometryTypes name:geometryType]];
 
     BOOL hasZ = geometry.hasZ;
     BOOL hasM = geometry.hasM;
 
     if (hasZ || hasM) {
         if (hasZ) {
-            [string appendString:@"Z"];
+            [_text appendString:@"Z"];
         }
         if (hasM) {
-            [string appendString:@"M"];
+            [_text appendString:@"M"];
         }
-        [string appendString:@" "];
+        [_text appendString:@" "];
     }
     
     switch (geometryType) {
@@ -49,49 +74,49 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
         case SF_GEOMETRY:
             [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
         case SF_POINT:
-            [self writeWrappedPoint:(SFPoint *)geometry toString:string];
+            [self writeWrappedPoint:(SFPoint *)geometry];
             break;
         case SF_LINESTRING:
-            [self writeLineString:(SFLineString *)geometry toString:string];
+            [self writeLineString:(SFLineString *)geometry];
             break;
         case SF_POLYGON:
-            [self writePolygon:(SFPolygon *)geometry toString:string];
+            [self writePolygon:(SFPolygon *)geometry];
             break;
         case SF_MULTIPOINT:
-            [self writeMultiPoint:(SFMultiPoint *)geometry toString:string];
+            [self writeMultiPoint:(SFMultiPoint *)geometry];
             break;
         case SF_MULTILINESTRING:
-            [self writeMultiLineString:(SFMultiLineString *)geometry toString:string];
+            [self writeMultiLineString:(SFMultiLineString *)geometry];
             break;
         case SF_MULTIPOLYGON:
-            [self writeMultiPolygon:(SFMultiPolygon *)geometry toString:string];
+            [self writeMultiPolygon:(SFMultiPolygon *)geometry];
             break;
         case SF_GEOMETRYCOLLECTION:
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
-            [self writeGeometryCollection:(SFGeometryCollection *)geometry toString:string];
+            [self writeGeometryCollection:(SFGeometryCollection *)geometry];
             break;
         case SF_CIRCULARSTRING:
-            [self writeCircularString:(SFCircularString *)geometry toString:string];
+            [self writeCircularString:(SFCircularString *)geometry];
             break;
         case SF_COMPOUNDCURVE:
-            [self writeCompoundCurve:(SFCompoundCurve *)geometry toString:string];
+            [self writeCompoundCurve:(SFCompoundCurve *)geometry];
             break;
         case SF_CURVEPOLYGON:
-            [self writeCurvePolygon:(SFCurvePolygon *)geometry toString:string];
+            [self writeCurvePolygon:(SFCurvePolygon *)geometry];
             break;
         case SF_CURVE:
             [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
         case SF_SURFACE:
             [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
         case SF_POLYHEDRALSURFACE:
-            [self writePolyhedralSurface:(SFPolyhedralSurface *)geometry toString:string];
+            [self writePolyhedralSurface:(SFPolyhedralSurface *)geometry];
             break;
         case SF_TIN:
-            [self writeTIN:(SFTIN *)geometry toString:string];
+            [self writeTIN:(SFTIN *)geometry];
             break;
         case SF_TRIANGLE:
-            [self writeTriangle:(SFTriangle *)geometry toString:string];
+            [self writeTriangle:(SFTriangle *)geometry];
             break;
         default:
             [NSException raise:@"Geometry Not Supported" format:@"Geometry Type not supported: %d", geometryType];
@@ -99,342 +124,433 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
     
 }
 
-+(NSString *) writeWrappedPoint: (SFPoint *) point{
-    NSMutableString *text = [NSMutableString string];
-    [self writeWrappedPoint:point toString:text];
-    return text;
-}
-
-+(void) writeWrappedPoint: (SFPoint *) point toString: (NSMutableString *) string{
+-(void) writeWrappedPoint: (SFPoint *) point{
     
-    [string appendString:@"("];
-    [self writePoint:point toString:string];
-    [string appendString:@")"];
+    [_text appendString:@"("];
+    [self writePoint:point];
+    [_text appendString:@")"];
     
 }
 
-+(NSString *) writePoint: (SFPoint *) point{
-    NSMutableString *text = [NSMutableString string];
-    [self writePoint:point toString:text];
-    return text;
-}
+-(void) writePoint: (SFPoint *) point{
 
-+(void) writePoint: (SFPoint *) point toString: (NSMutableString *) string{
-
-    [self writeValue:point.x toString:string];
-    [string appendString:@" "];
-    [self writeValue:point.y toString:string];
+    [self writeValue:point.x];
+    [_text appendString:@" "];
+    [self writeValue:point.y];
     
     if([point hasZ]){
-        [string appendString:@" "];
-        [self writeValue:point.z toString:string];
+        [_text appendString:@" "];
+        [self writeValue:point.z];
     }
     
     if([point hasM]){
-        [string appendString:@" "];
-        [self writeValue:point.m toString:string];
+        [_text appendString:@" "];
+        [self writeValue:point.m];
     }
     
 }
 
-+(NSString *) writeLineString: (SFLineString *) lineString{
-    NSMutableString *text = [NSMutableString string];
-    [self writeLineString:lineString toString:text];
-    return text;
-}
-
-+(void) writeLineString: (SFLineString *) lineString toString: (NSMutableString *) string{
+-(void) writeLineString: (SFLineString *) lineString{
     
     if([lineString isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [lineString numPoints]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writePoint:[lineString pointAtIndex:i] toString:string];
+            [self writePoint:[lineString pointAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writePolygon: (SFPolygon *) polygon{
-    NSMutableString *text = [NSMutableString string];
-    [self writePolygon:polygon toString:text];
-    return text;
-}
-
-+(void) writePolygon: (SFPolygon *) polygon toString: (NSMutableString *) string{
+-(void) writePolygon: (SFPolygon *) polygon{
     
     if([polygon isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [polygon numRings]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writeLineString:[polygon ringAtIndex:i] toString:string];
+            [self writeLineString:[polygon ringAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writeMultiPoint: (SFMultiPoint *) multiPoint{
-    NSMutableString *text = [NSMutableString string];
-    [self writeMultiPoint:multiPoint toString:text];
-    return text;
-}
-
-+(void) writeMultiPoint: (SFMultiPoint *) multiPoint toString: (NSMutableString *) string{
+-(void) writeMultiPoint: (SFMultiPoint *) multiPoint{
     
     if([multiPoint isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [multiPoint numPoints]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writeWrappedPoint:[multiPoint pointAtIndex:i] toString:string];
+            [self writeWrappedPoint:[multiPoint pointAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writeMultiLineString: (SFMultiLineString *) multiLineString{
-    NSMutableString *text = [NSMutableString string];
-    [self writeMultiLineString:multiLineString toString:text];
-    return text;
-}
-
-+(void) writeMultiLineString: (SFMultiLineString *) multiLineString toString: (NSMutableString *) string{
+-(void) writeMultiLineString: (SFMultiLineString *) multiLineString{
     
     if([multiLineString isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [multiLineString numLineStrings]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writeLineString:[multiLineString lineStringAtIndex:i] toString:string];
+            [self writeLineString:[multiLineString lineStringAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writeMultiPolygon: (SFMultiPolygon *) multiPolygon{
-    NSMutableString *text = [NSMutableString string];
-    [self writeMultiPolygon:multiPolygon toString:text];
-    return text;
-}
-
-+(void) writeMultiPolygon: (SFMultiPolygon *) multiPolygon toString: (NSMutableString *) string{
+-(void) writeMultiPolygon: (SFMultiPolygon *) multiPolygon{
     
     if([multiPolygon isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [multiPolygon numPolygons]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writePolygon:[multiPolygon polygonAtIndex:i] toString:string];
+            [self writePolygon:[multiPolygon polygonAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writeGeometryCollection: (SFGeometryCollection *) geometryCollection{
-    NSMutableString *text = [NSMutableString string];
-    [self writeGeometryCollection:geometryCollection toString:text];
-    return text;
-}
-
-+(void) writeGeometryCollection: (SFGeometryCollection *) geometryCollection toString: (NSMutableString *) string{
+-(void) writeGeometryCollection: (SFGeometryCollection *) geometryCollection{
     
     if([geometryCollection isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [geometryCollection numGeometries]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writeGeometry:[geometryCollection geometryAtIndex:i] toString:string];
+            [self write:[geometryCollection geometryAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writeCircularString: (SFCircularString *) circularString{
-    NSMutableString *text = [NSMutableString string];
-    [self writeCircularString:circularString toString:text];
-    return text;
-}
-
-+(void) writeCircularString: (SFCircularString *) circularString toString: (NSMutableString *) string{
+-(void) writeCircularString: (SFCircularString *) circularString{
     
     if([circularString isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [circularString numPoints]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writePoint:[circularString pointAtIndex:i] toString:string];
+            [self writePoint:[circularString pointAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writeCompoundCurve: (SFCompoundCurve *) compoundCurve{
-    NSMutableString *text = [NSMutableString string];
-    [self writeCompoundCurve:compoundCurve toString:text];
-    return text;
-}
-
-+(void) writeCompoundCurve: (SFCompoundCurve *) compoundCurve toString: (NSMutableString *) string{
+-(void) writeCompoundCurve: (SFCompoundCurve *) compoundCurve{
     
     if([compoundCurve isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [compoundCurve numLineStrings]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writeGeometry:[compoundCurve lineStringAtIndex:i] toString:string];
+            [self write:[compoundCurve lineStringAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writeCurvePolygon: (SFCurvePolygon *) curvePolygon{
-    NSMutableString *text = [NSMutableString string];
-    [self writeCurvePolygon:curvePolygon toString:text];
-    return text;
-}
-
-+(void) writeCurvePolygon: (SFCurvePolygon *) curvePolygon toString: (NSMutableString *) string{
+-(void) writeCurvePolygon: (SFCurvePolygon *) curvePolygon{
     
     if([curvePolygon isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [curvePolygon numRings]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writeGeometry:[curvePolygon ringAtIndex:i] toString:string];
+            [self write:[curvePolygon ringAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writePolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
-    NSMutableString *text = [NSMutableString string];
-    [self writePolyhedralSurface:polyhedralSurface toString:text];
-    return text;
-}
-
-+(void) writePolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface toString: (NSMutableString *) string{
+-(void) writePolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
     
     if([polyhedralSurface isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [polyhedralSurface numPolygons]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writePolygon:[polyhedralSurface polygonAtIndex:i] toString:string];
+            [self writePolygon:[polyhedralSurface polygonAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writeTIN: (SFTIN *) tin{
-    NSMutableString *text = [NSMutableString string];
-    [self writeTIN:tin toString:text];
-    return text;
-}
-
-+(void) writeTIN: (SFTIN *) tin toString: (NSMutableString *) string{
+-(void) writeTIN: (SFTIN *) tin{
     
     if([tin isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [tin numPolygons]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writePolygon:[tin polygonAtIndex:i] toString:string];
+            [self writePolygon:[tin polygonAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
 }
 
-+(NSString *) writeTriangle: (SFTriangle *) triangle{
-    NSMutableString *text = [NSMutableString string];
-    [self writeTriangle:triangle toString:text];
-    return text;
-}
-
-+(void) writeTriangle: (SFTriangle *) triangle toString: (NSMutableString *) string{
+-(void) writeTriangle: (SFTriangle *) triangle{
     
     if([triangle isEmpty]){
-        [self writeEmpty:string];
+        [self writeEmpty];
     }else{
-        [string appendString:@"("];
+        [_text appendString:@"("];
         
         for(int i = 0; i < [triangle numRings]; i++){
             if(i > 0){
-                [string appendString:@", "];
+                [_text appendString:@", "];
             }
-            [self writeLineString:[triangle ringAtIndex:i] toString:string];
+            [self writeLineString:[triangle ringAtIndex:i]];
         }
         
-        [string appendString:@")"];
+        [_text appendString:@")"];
     }
     
+}
+
+/**
+ * Write the value
+ *
+ * @param value decimal number
+ */
+-(void) writeValue: (NSDecimalNumber *) value{
+    [SFWTGeometryWriter writeValue:value toString:_text];
+}
+
+/**
+ * Write the empty set
+ */
+-(void) writeEmpty{
+    [SFWTGeometryWriter writeEmpty:_text];
+}
+
++(void) writeGeometry: (SFGeometry *) geometry toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter write:geometry];
+}
+
++(NSString *) writeWrappedPoint: (SFPoint *) point{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeWrappedPoint:point];
+    return geometryWriter.text;
+}
+
++(void) writeWrappedPoint: (SFPoint *) point toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeWrappedPoint:point];
+}
+
++(NSString *) writePoint: (SFPoint *) point{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writePoint:point];
+    return geometryWriter.text;
+}
+
++(void) writePoint: (SFPoint *) point toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writePoint:point];
+}
+
++(NSString *) writeLineString: (SFLineString *) lineString{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeLineString:lineString];
+    return geometryWriter.text;
+}
+
++(void) writeLineString: (SFLineString *) lineString toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeLineString:lineString];
+}
+
++(NSString *) writePolygon: (SFPolygon *) polygon{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writePolygon:polygon];
+    return geometryWriter.text;
+}
+
++(void) writePolygon: (SFPolygon *) polygon toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writePolygon:polygon];
+}
+
++(NSString *) writeMultiPoint: (SFMultiPoint *) multiPoint{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeMultiPoint:multiPoint];
+    return geometryWriter.text;
+}
+
++(void) writeMultiPoint: (SFMultiPoint *) multiPoint toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeMultiPoint:multiPoint];
+}
+
++(NSString *) writeMultiLineString: (SFMultiLineString *) multiLineString{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeMultiLineString:multiLineString];
+    return geometryWriter.text;
+}
+
++(void) writeMultiLineString: (SFMultiLineString *) multiLineString toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeMultiLineString:multiLineString];
+}
+
++(NSString *) writeMultiPolygon: (SFMultiPolygon *) multiPolygon{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeMultiPolygon:multiPolygon];
+    return geometryWriter.text;
+}
+
++(void) writeMultiPolygon: (SFMultiPolygon *) multiPolygon toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeMultiPolygon:multiPolygon];
+}
+
++(NSString *) writeGeometryCollection: (SFGeometryCollection *) geometryCollection{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeGeometryCollection:geometryCollection];
+    return geometryWriter.text;
+}
+
++(void) writeGeometryCollection: (SFGeometryCollection *) geometryCollection toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeGeometryCollection:geometryCollection];
+}
+
++(NSString *) writeCircularString: (SFCircularString *) circularString{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeCircularString:circularString];
+    return geometryWriter.text;
+}
+
++(void) writeCircularString: (SFCircularString *) circularString toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeCircularString:circularString];
+}
+
++(NSString *) writeCompoundCurve: (SFCompoundCurve *) compoundCurve{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeCompoundCurve:compoundCurve];
+    return geometryWriter.text;
+}
+
++(void) writeCompoundCurve: (SFCompoundCurve *) compoundCurve toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeCompoundCurve:compoundCurve];
+}
+
++(NSString *) writeCurvePolygon: (SFCurvePolygon *) curvePolygon{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeCurvePolygon:curvePolygon];
+    return geometryWriter.text;
+}
+
++(void) writeCurvePolygon: (SFCurvePolygon *) curvePolygon toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeCurvePolygon:curvePolygon];
+}
+
++(NSString *) writePolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writePolyhedralSurface:polyhedralSurface];
+    return geometryWriter.text;
+}
+
++(void) writePolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writePolyhedralSurface:polyhedralSurface];
+}
+
++(NSString *) writeTIN: (SFTIN *) tin{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeTIN:tin];
+    return geometryWriter.text;
+}
+
++(void) writeTIN: (SFTIN *) tin toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeTIN:tin];
+}
+
++(NSString *) writeTriangle: (SFTriangle *) triangle{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] init];
+    [geometryWriter writeTriangle:triangle];
+    return geometryWriter.text;
+}
+
++(void) writeTriangle: (SFTriangle *) triangle toString: (NSMutableString *) string{
+    SFWTGeometryWriter *geometryWriter = [[SFWTGeometryWriter alloc] initWithText:string];
+    [geometryWriter writeTriangle:triangle];
 }
 
 /**

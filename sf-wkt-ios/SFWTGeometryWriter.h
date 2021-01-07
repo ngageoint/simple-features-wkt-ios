@@ -37,6 +37,145 @@
 +(NSString *) writeGeometry: (SFGeometry *) geometry;
 
 /**
+ * Initializer
+ */
+-(instancetype) init;
+
+/**
+ * Initializer
+ *
+ * @param text  mutable string
+ */
+-(instancetype) initWithText: (NSMutableString *) text;
+
+/**
+ * Get the well-known text
+ *
+ * @return text
+ */
+-(NSMutableString *) text;
+
+/**
+ * Write a geometry to well-known text
+ *
+ * @param geometry
+ *            geometry
+ */
+-(void) write: (SFGeometry *) geometry;
+
+/**
+ * Write a Point
+ *
+ * @param point
+ *            point
+ */
+-(void) writeWrappedPoint: (SFPoint *) point;
+
+/**
+ * Write a Point
+ *
+ * @param point
+ *            point
+ */
+-(void) writePoint: (SFPoint *) point;
+
+/**
+ * Write a Line String
+ *
+ * @param lineString
+ *            line string
+ */
+-(void) writeLineString: (SFLineString *) lineString;
+
+/**
+ * Write a Polygon
+ *
+ * @param polygon
+ *            polygon
+ */
+-(void) writePolygon: (SFPolygon *) polygon;
+
+/**
+ * Write a Multi Point
+ *
+ * @param multiPoint
+ *            multi point
+ */
+-(void) writeMultiPoint: (SFMultiPoint *) multiPoint;
+
+/**
+ * Write a Multi Line String
+ *
+ * @param multiLineString
+ *            multi line string
+ */
+-(void) writeMultiLineString: (SFMultiLineString *) multiLineString;
+
+/**
+ * Write a Multi Polygon
+ *
+ * @param multiPolygon
+ *            multi polygon
+ */
+-(void) writeMultiPolygon: (SFMultiPolygon *) multiPolygon;
+
+/**
+ * Write a Geometry Collection
+ *
+ * @param geometryCollection
+ *            geometry collection
+ */
+-(void) writeGeometryCollection: (SFGeometryCollection *) geometryCollection;
+
+/**
+ * Write a Circular String
+ *
+ * @param circularString
+ *            circular string
+ */
+-(void) writeCircularString: (SFCircularString *) circularString;
+
+/**
+ * Write a Compound Curve
+ *
+ * @param compoundCurve
+ *            compound curve
+ */
+-(void) writeCompoundCurve: (SFCompoundCurve *) compoundCurve;
+
+/**
+ * Write a Curve Polygon
+ *
+ * @param curvePolygon
+ *            curve polygon
+ */
+-(void) writeCurvePolygon: (SFCurvePolygon *) curvePolygon;
+
+/**
+ * Write a Polyhedral Surface
+ *
+ * @param polyhedralSurface
+ *            polyhedral surface
+ */
+-(void) writePolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface;
+
+/**
+ * Write a TIN
+ *
+ * @param tin
+ *            TIN
+ */
+-(void) writeTIN: (SFTIN *) tin;
+
+/**
+ * Write a Triangle
+ *
+ * @param triangle
+ *            triangle
+ */
+-(void) writeTriangle: (SFTriangle *) triangle;
+
+/**
  * Write a geometry to well-known text
  *
  * @param geometry
