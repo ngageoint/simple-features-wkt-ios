@@ -53,7 +53,7 @@ Open sf-wkt-ios.xcworkspace in Xcode or build from command line:
 
 Run tests from Xcode or from command line:
 
-    xcodebuild test -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios -destination 'platform=iOS Simulator,name=iPhone 8'
+    xcodebuild test -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios -destination 'platform=iOS Simulator,name=iPhone 12'
 
 ### Include Library ###
 
