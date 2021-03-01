@@ -17,7 +17,7 @@
     <a title="SFWTGeometryWriter Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">sf-wkt-ios 1.0.0 Docs</a> (86% documented)</p>
+        <p><a href="../index.html">sf-wkt-ios 2.0.0 Docs</a> (90% documented)</p>
         <p class="header-right"><a href="https://github.com/ngageoint/simple-features-wkt-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -79,6 +79,9 @@
                 <a href="../Classes/SFExtendedGeometryCollection.html">SFExtendedGeometryCollection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)SFFiniteFilterTypes">SFFiniteFilterTypes</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFGeometry.html">SFGeometry</a>
               </li>
               <li class="nav-group-task">
@@ -127,6 +130,9 @@
                 <a href="../Classes/SFPoint.html">SFPoint</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SFPointFiniteFilter.html">SFPointFiniteFilter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFPolygon.html">SFPolygon</a>
               </li>
               <li class="nav-group-task">
@@ -167,6 +173,12 @@
           <li class="nav-group-name">
             <a href="../Constants.html">Constants</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteReader.h@DEFAULT_READ_BYTE_ORDER">DEFAULT_READ_BYTE_ORDER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteWriter.h@DEFAULT_WRITE_BYTE_ORDER">DEFAULT_WRITE_BYTE_ORDER</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Constants.html#/c:@SF_CIRCULARSTRING_NAME">SF_CIRCULARSTRING_NAME</a>
               </li>
@@ -233,6 +245,9 @@
                 <a href="../Enums/SFEventType.html">SFEventType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SFGeometryType.html">SFGeometryType</a>
               </li>
             </ul>
@@ -266,7 +281,7 @@
             <p>Well Known Text writer</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L28-L315">Show on GitHub</a>
+                <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L28-L454">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -325,7 +340,945 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L37">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L37">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)init"></a>
+                    <a name="//apple_ref/objc/Method/-init" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)init">-init</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializer</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="n">init</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L42">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)initWithText:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithText:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)initWithText:">-initWithText:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializer</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithText</span><span class="p">:(</span><span class="n">NSMutableString</span> <span class="o">*</span><span class="p">)</span><span class="nv">text</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">NSMutableString</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>text</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>mutable string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L49">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)text"></a>
+                    <a name="//apple_ref/objc/Method/-text" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)text">-text</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the well-known text</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">NSMutableString</span> <span class="o">*</span><span class="p">)</span><span class="n">text</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">text</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSMutableString</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>text</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L56">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)write:"></a>
+                    <a name="//apple_ref/objc/Method/-write:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)write:">-write:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a geometry to well-known text</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">write</span><span class="p">:(</span><span class="n"><a href="../Classes/SFGeometry.html">SFGeometry</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">geometry</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">geometry</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFGeometry.html">SFGeometry</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>geometry</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>geometry</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L64">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeWrappedPoint:"></a>
+                    <a name="//apple_ref/objc/Method/-writeWrappedPoint:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeWrappedPoint:">-writeWrappedPoint:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Point</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeWrappedPoint</span><span class="p">:(</span><span class="n"><a href="../Classes/SFPoint.html">SFPoint</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">point</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">writeWrappedPoint</span><span class="p">(</span><span class="n">_</span> <span class="nv">point</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFPoint.html">SFPoint</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>point</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>point</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L72">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writePoint:"></a>
+                    <a name="//apple_ref/objc/Method/-writePoint:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writePoint:">-writePoint:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Point</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writePoint</span><span class="p">:(</span><span class="n"><a href="../Classes/SFPoint.html">SFPoint</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">point</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">point</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFPoint.html">SFPoint</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>point</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>point</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L80">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeLineString:"></a>
+                    <a name="//apple_ref/objc/Method/-writeLineString:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeLineString:">-writeLineString:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Line String</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeLineString</span><span class="p">:(</span><span class="n"><a href="../Classes/SFLineString.html">SFLineString</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">lineString</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">lineString</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFLineString.html">SFLineString</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lineString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>line string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L88">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writePolygon:"></a>
+                    <a name="//apple_ref/objc/Method/-writePolygon:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writePolygon:">-writePolygon:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Polygon</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writePolygon</span><span class="p">:(</span><span class="n"><a href="../Classes/SFPolygon.html">SFPolygon</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">polygon</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">polygon</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFPolygon.html">SFPolygon</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>polygon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>polygon</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L96">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeMultiPoint:"></a>
+                    <a name="//apple_ref/objc/Method/-writeMultiPoint:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeMultiPoint:">-writeMultiPoint:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Multi Point</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeMultiPoint</span><span class="p">:(</span><span class="n"><a href="../Classes/SFMultiPoint.html">SFMultiPoint</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">multiPoint</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">multiPoint</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFMultiPoint.html">SFMultiPoint</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>multiPoint</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>multi point</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L104">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeMultiLineString:"></a>
+                    <a name="//apple_ref/objc/Method/-writeMultiLineString:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeMultiLineString:">-writeMultiLineString:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Multi Line String</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeMultiLineString</span><span class="p">:(</span><span class="n"><a href="../Classes/SFMultiLineString.html">SFMultiLineString</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">multiLineString</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">multiLineString</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFMultiLineString.html">SFMultiLineString</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>multiLineString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>multi line string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L112">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeMultiPolygon:"></a>
+                    <a name="//apple_ref/objc/Method/-writeMultiPolygon:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeMultiPolygon:">-writeMultiPolygon:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Multi Polygon</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeMultiPolygon</span><span class="p">:(</span><span class="n"><a href="../Classes/SFMultiPolygon.html">SFMultiPolygon</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">multiPolygon</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">multiPolygon</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFMultiPolygon.html">SFMultiPolygon</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>multiPolygon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>multi polygon</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L120">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeGeometryCollection:"></a>
+                    <a name="//apple_ref/objc/Method/-writeGeometryCollection:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeGeometryCollection:">-writeGeometryCollection:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Geometry Collection</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeGeometryCollection</span><span class="p">:(</span><span class="n"><a href="../Classes/SFGeometryCollection.html">SFGeometryCollection</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">geometryCollection</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">geometryCollection</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFGeometryCollection.html">SFGeometryCollection</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>geometryCollection</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>geometry collection</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L128">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeCircularString:"></a>
+                    <a name="//apple_ref/objc/Method/-writeCircularString:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeCircularString:">-writeCircularString:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Circular String</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeCircularString</span><span class="p">:(</span><span class="n"><a href="../Classes/SFCircularString.html">SFCircularString</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">circularString</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">circularString</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFCircularString.html">SFCircularString</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>circularString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>circular string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L136">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeCompoundCurve:"></a>
+                    <a name="//apple_ref/objc/Method/-writeCompoundCurve:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeCompoundCurve:">-writeCompoundCurve:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Compound Curve</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeCompoundCurve</span><span class="p">:(</span><span class="n"><a href="../Classes/SFCompoundCurve.html">SFCompoundCurve</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">compoundCurve</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">compoundCurve</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFCompoundCurve.html">SFCompoundCurve</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>compoundCurve</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>compound curve</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L144">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeCurvePolygon:"></a>
+                    <a name="//apple_ref/objc/Method/-writeCurvePolygon:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeCurvePolygon:">-writeCurvePolygon:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Curve Polygon</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeCurvePolygon</span><span class="p">:(</span><span class="n"><a href="../Classes/SFCurvePolygon.html">SFCurvePolygon</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">curvePolygon</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">curvePolygon</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFCurvePolygon.html">SFCurvePolygon</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>curvePolygon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>curve polygon</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L152">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writePolyhedralSurface:"></a>
+                    <a name="//apple_ref/objc/Method/-writePolyhedralSurface:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writePolyhedralSurface:">-writePolyhedralSurface:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Polyhedral Surface</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writePolyhedralSurface</span><span class="p">:(</span><span class="n"><a href="../Classes/SFPolyhedralSurface.html">SFPolyhedralSurface</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">polyhedralSurface</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">polyhedralSurface</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFPolyhedralSurface.html">SFPolyhedralSurface</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>polyhedralSurface</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>polyhedral surface</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L160">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeTIN:"></a>
+                    <a name="//apple_ref/objc/Method/-writeTIN:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeTIN:">-writeTIN:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a TIN</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeTIN</span><span class="p">:(</span><span class="n"><a href="../Classes/SFTIN.html">SFTIN</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">tin</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">tin</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFTIN.html">SFTIN</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tin</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>TIN</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L168">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFWTGeometryWriter(im)writeTriangle:"></a>
+                    <a name="//apple_ref/objc/Method/-writeTriangle:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFWTGeometryWriter(im)writeTriangle:">-writeTriangle:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Write a Triangle</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">writeTriangle</span><span class="p">:(</span><span class="n"><a href="../Classes/SFTriangle.html">SFTriangle</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">triangle</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">triangle</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFTriangle.html">SFTriangle</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>triangle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>triangle</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L176">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -391,7 +1344,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L47">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L186">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -449,7 +1402,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L56">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L195">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -515,7 +1468,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L66">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L205">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -573,7 +1526,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L75">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L214">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -639,7 +1592,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L85">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L224">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -697,7 +1650,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L94">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L233">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -764,7 +1717,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L104">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L243">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -822,7 +1775,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L113">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L252">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -888,7 +1841,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L123">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L262">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -946,7 +1899,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L132">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L271">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1013,7 +1966,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L142">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L281">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1071,7 +2024,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L151">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L290">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1138,7 +2091,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L161">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L300">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1196,7 +2149,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L170">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L309">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1263,7 +2216,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L180">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L319">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1322,7 +2275,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L189">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L328">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1389,7 +2342,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L199">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L338">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1447,7 +2400,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L208">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L347">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1514,7 +2467,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L218">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L357">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1572,7 +2525,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L227">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L366">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1639,7 +2592,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L237">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L376">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1697,7 +2650,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L246">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L385">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1764,7 +2717,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L256">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L395">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1822,7 +2775,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L265">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L404">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1889,7 +2842,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L275">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L414">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1947,7 +2900,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L284">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L423">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2013,7 +2966,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L294">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L433">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2071,7 +3024,7 @@
                         <p>well-known text string</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L303">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L442">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2137,7 +3090,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/1.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L313">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-wkt-ios/tree/2.0.0/sf-wkt-ios/SFWTGeometryWriter.h#L452">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2147,8 +3100,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2020-08-12)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2021-03-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

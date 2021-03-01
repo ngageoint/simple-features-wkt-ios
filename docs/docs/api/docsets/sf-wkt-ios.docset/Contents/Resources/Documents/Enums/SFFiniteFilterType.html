@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SFEventType Enumeration Reference</title>
+    <title>SFFiniteFilterType Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/objc/Enum/SFEventType" class="dashAnchor"></a>
-    <a title="SFEventType Enumeration Reference"></a>
+    <a name="//apple_ref/objc/Enum/SFFiniteFilterType" class="dashAnchor"></a>
+    <a title="SFFiniteFilterType Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">sf-wkt-ios 2.0.0 Docs</a> (90% documented)</p>
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">sf-wkt-ios Reference</a>
         <img id="carat" src="../img/carat.png" />
-        SFEventType Enumeration Reference
+        SFFiniteFilterType Enumeration Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -265,20 +265,21 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>SFEventType</h1>
+            <h1>SFFiniteFilterType</h1>
               <div class="declaration">
                 <div class="language">
                   <p class="aside-title">Objective-C</p>
-                  <pre class="highlight objective_c"><code><span class="k">enum</span> <span class="n">SFEventType</span> <span class="p">{}</span></code></pre>
+                  <pre class="highlight objective_c"><code><span class="k">enum</span> <span class="n">SFFiniteFilterType</span> <span class="p">{}</span></code></pre>
 
                 </div>
                 <div class="language">
                   <p class="aside-title">Swift</p>
-                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">SFEventType</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">RawRepresentable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">SFFiniteFilterType</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">RawRepresentable</span></code></pre>
 
                 </div>
               </div>
-            <p>Event type of the point direction</p>
+            <p>Finite Filter Type, including finite values and optionally one of either
+infinite or NaN values</p>
 
           </section>
           <section class="section task-group-section">
@@ -287,9 +288,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@E@SFEventType@SF_ET_LEFT"></a>
-                    <a name="//apple_ref/objc/Case/SF_ET_LEFT" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@E@SFEventType@SF_ET_LEFT">SF_ET_LEFT</a>
+                    <a name="/c:@E@SFFiniteFilterType@SF_FF_FINITE"></a>
+                    <a name="//apple_ref/objc/Case/SF_FF_FINITE" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@SFFiniteFilterType@SF_FF_FINITE">SF_FF_FINITE</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -304,7 +305,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="n">SF_ET_LEFT</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="n">SF_FF_FINITE</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
 
                         </div>
                       </div>
@@ -314,9 +315,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@E@SFEventType@SF_ET_RIGHT"></a>
-                    <a name="//apple_ref/objc/Case/SF_ET_RIGHT" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@E@SFEventType@SF_ET_RIGHT">SF_ET_RIGHT</a>
+                    <a name="/c:@E@SFFiniteFilterType@SF_FF_FINITE_AND_INFINITE"></a>
+                    <a name="//apple_ref/objc/Case/SF_FF_FINITE_AND_INFINITE" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@SFFiniteFilterType@SF_FF_FINITE_AND_INFINITE">SF_FF_FINITE_AND_INFINITE</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -331,7 +332,34 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="n">SF_ET_RIGHT</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="n">SF_FF_FINITE_AND_INFINITE</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@SFFiniteFilterType@SF_FF_FINITE_AND_NAN"></a>
+                    <a name="//apple_ref/objc/Case/SF_FF_FINITE_AND_NAN" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@SFFiniteFilterType@SF_FF_FINITE_AND_NAN">SF_FF_FINITE_AND_NAN</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">SF_FF_FINITE_AND_NAN</span></code></pre>
 
                         </div>
                       </div>

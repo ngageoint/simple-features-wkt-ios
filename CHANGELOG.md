@@ -4,9 +4,9 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 1.0.1
+## 2.0.0
 
-* sf-ios 3.0.1
+* sf-ios 4.0.0
 * iOS platform and deployment target 12.0
 * Geometry reader/writer instance methods
 

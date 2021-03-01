@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SFMultiSurface Class Reference</title>
+    <title>SFPointFiniteFilter Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/objc/Class/SFMultiSurface" class="dashAnchor"></a>
-    <a title="SFMultiSurface Class Reference"></a>
+    <a name="//apple_ref/objc/Class/SFPointFiniteFilter" class="dashAnchor"></a>
+    <a title="SFPointFiniteFilter Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">sf-wkt-ios 2.0.0 Docs</a> (90% documented)</p>
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">sf-wkt-ios Reference</a>
         <img id="carat" src="../img/carat.png" />
-        SFMultiSurface Class Reference
+        SFPointFiniteFilter Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -265,21 +265,21 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>SFMultiSurface</h1>
+            <h1>SFPointFiniteFilter</h1>
               <div class="declaration">
                 <div class="language">
                   <p class="aside-title">Objective-C</p>
-                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SFMultiSurface</span> <span class="p">:</span> <span class="nc"><a href="../Classes/SFGeometryCollection.html">SFGeometryCollection</a></span></code></pre>
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SFPointFiniteFilter</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n"><a href="../Protocols/SFGeometryFilter.html">SFGeometryFilter</a></span><span class="o">&gt;</span></code></pre>
 
                 </div>
                 <div class="language">
                   <p class="aside-title">Swift</p>
-                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SFMultiSurface</span> <span class="p">:</span> <span class="kt"><a href="../Classes/SFGeometryCollection.html">SFGeometryCollection</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SFPointFiniteFilter</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="../Protocols/SFGeometryFilter.html">SFGeometryFilter</a></span></code></pre>
 
                 </div>
               </div>
-            <p>A restricted form of GeometryCollection where each Geometry in the collection
-must be of type Surface.</p>
+            <p>Point filter for finite checks on x and y properties, optionally filter on z
+and m properties and non finite values (NaN or infinity)</p>
 
           </section>
           <section class="section task-group-section">
@@ -288,9 +288,9 @@ must be of type Surface.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:objc(cs)SFMultiSurface(im)initWithType:andHasZ:andHasM:"></a>
-                    <a name="//apple_ref/objc/Method/-initWithType:andHasZ:andHasM:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiSurface(im)initWithType:andHasZ:andHasM:">-initWithType:<wbr>andHasZ:<wbr>andHasM:<wbr></a>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(py)type"></a>
+                    <a name="//apple_ref/objc/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(py)type">type</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -298,21 +298,151 @@ must be of type Surface.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialize</p>
+                        <p>Finite Filter type</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/SFGeometryType.html">SFGeometryType</a></span><span class="p">)</span><span class="nv">geometryType</span>
-                     <span class="nf">andHasZ</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">hasZ</span>
-                     <span class="nf">andHasM</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">hasM</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="k">enum</span> <span class="n"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span> <span class="n">type</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="n">type</span> <span class="nv">geometryType</span><span class="p">:</span> <span class="kt"><a href="../Enums/SFGeometryType.html">SFGeometryType</a></span><span class="p">,</span> <span class="n">andHasZ</span> <span class="nv">hasZ</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">andHasM</span> <span class="nv">hasM</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(py)filterZ"></a>
+                    <a name="//apple_ref/objc/Property/filterZ" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(py)filterZ">filterZ</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Include z values in filtering</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">filterZ</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">filterZ</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(py)filterM"></a>
+                    <a name="//apple_ref/objc/Property/filterM" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(py)filterM">filterM</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Include m values in filtering</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">filterM</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">filterM</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(im)init"></a>
+                    <a name="//apple_ref/objc/Method/-init" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(im)init">-init</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize, filter on x and y, allowing only finite values</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="n">init</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>new point finite filter</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(im)initWithType:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithType:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(im)initWithType:">-initWithType:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize, filter on x and y</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span><span class="p">)</span><span class="nv">type</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -323,36 +453,12 @@ must be of type Surface.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>geometryType</em>
+                                <em>type</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>geometry type</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>hasZ</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>has z values</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>hasM</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>has m values</p>
+                                  <p>finite filter type</p>
                                 </div>
                               </td>
                             </tr>
@@ -361,7 +467,7 @@ must be of type Surface.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>new multi surface</p>
+                        <p>new point finite filter</p>
                       </div>
                     </section>
                   </div>
@@ -369,9 +475,9 @@ must be of type Surface.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:objc(cs)SFMultiSurface(im)surfaces"></a>
-                    <a name="//apple_ref/objc/Method/-surfaces" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiSurface(im)surfaces">-surfaces</a>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(im)initWithType:andZ:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithType:andZ:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(im)initWithType:andZ:">-initWithType:<wbr>andZ:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -379,55 +485,19 @@ must be of type Surface.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Get the surfaces</p>
+                        <p>Initialize, filter on x, y, and optionally z</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">NSMutableArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/SFSurface.html">SFSurface</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">surfaces</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span><span class="p">)</span><span class="nv">type</span> <span class="nf">andZ</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">filterZ</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">surfaces</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSMutableArray</span><span class="o">!</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>surfaces</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:objc(cs)SFMultiSurface(im)setSurfaces:"></a>
-                    <a name="//apple_ref/objc/Method/-setSurfaces:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiSurface(im)setSurfaces:">-setSurfaces:<wbr></a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Set the surfaces</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setSurfaces</span><span class="p">:(</span><span class="n">NSMutableArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/SFSurface.html">SFSurface</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">surfaces</span><span class="p">;</span></code></pre>
-
-                        </div>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setSurfaces</span><span class="p">(</span><span class="n">_</span> <span class="nv">surfaces</span><span class="p">:</span> <span class="kt">NSMutableArray</span><span class="o">!</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span><span class="p">,</span> <span class="n">andZ</span> <span class="nv">filterZ</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -438,201 +508,24 @@ must be of type Surface.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>surfaces</em>
+                                <em>type</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>surfaces</p>
+                                  <p>finite filter type</p>
                                 </div>
                               </td>
                             </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:objc(cs)SFMultiSurface(im)addSurface:"></a>
-                    <a name="//apple_ref/objc/Method/-addSurface:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiSurface(im)addSurface:">-addSurface:<wbr></a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Add a surface</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addSurface</span><span class="p">:(</span><span class="n"><a href="../Classes/SFSurface.html">SFSurface</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">surface</span><span class="p">;</span></code></pre>
-
-                        </div>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addSurface</span><span class="p">(</span><span class="n">_</span> <span class="nv">surface</span><span class="p">:</span> <span class="kt"><a href="../Classes/SFSurface.html">SFSurface</a></span><span class="o">!</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
                             <tr>
                               <td>
                                 <code>
-                                <em>surface</em>
+                                <em>filterZ</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>surface</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:objc(cs)SFMultiSurface(im)addSurfaces:"></a>
-                    <a name="//apple_ref/objc/Method/-addSurfaces:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiSurface(im)addSurfaces:">-addSurfaces:<wbr></a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Add surfaces</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addSurfaces</span><span class="p">:(</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/SFSurface.html">SFSurface</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">surfaces</span><span class="p">;</span></code></pre>
-
-                        </div>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addSurfaces</span><span class="p">(</span><span class="n">_</span> <span class="nv">surfaces</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SFSurface.html">SFSurface</a></span><span class="p">]</span><span class="o">!</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>surfaces</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>surfaces</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:objc(cs)SFMultiSurface(im)numSurfaces"></a>
-                    <a name="//apple_ref/objc/Method/-numSurfaces" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiSurface(im)numSurfaces">-numSurfaces</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Get the number of surfaces</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">numSurfaces</span><span class="p">;</span></code></pre>
-
-                        </div>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">numSurfaces</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>surface count</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:objc(cs)SFMultiSurface(im)surfaceAtIndex:"></a>
-                    <a name="//apple_ref/objc/Method/-surfaceAtIndex:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiSurface(im)surfaceAtIndex:">-surfaceAtIndex:<wbr></a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns the Nth surface</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n"><a href="../Classes/SFSurface.html">SFSurface</a></span> <span class="o">*</span><span class="p">)</span><span class="nf">surfaceAtIndex</span><span class="p">:(</span><span class="kt">int</span><span class="p">)</span><span class="nv">n</span><span class="p">;</span></code></pre>
-
-                        </div>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">surface</span><span class="p">(</span><span class="n">at</span> <span class="nv">n</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SFSurface.html">SFSurface</a></span><span class="o">!</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>n</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>nth surface to return</p>
+                                  <p>filter z values mode</p>
                                 </div>
                               </td>
                             </tr>
@@ -641,7 +534,332 @@ must be of type Surface.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>surface</p>
+                        <p>new point finite filter</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(im)initWithType:andM:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithType:andM:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(im)initWithType:andM:">-initWithType:<wbr>andM:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize, filter on x, y, and optionally m</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span><span class="p">)</span><span class="nv">type</span> <span class="nf">andM</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">filterM</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span><span class="p">,</span> <span class="n">andM</span> <span class="nv">filterM</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>finite filter type</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filterM</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>filter m values mode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>new point finite filter</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(im)initWithType:andZ:andM:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithType:andZ:andM:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(im)initWithType:andZ:andM:">-initWithType:<wbr>andZ:<wbr>andM:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize, filter on x, y, and optionally z and m</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span><span class="p">)</span><span class="nv">type</span>
+                        <span class="nf">andZ</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">filterZ</span>
+                        <span class="nf">andM</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">filterM</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a></span><span class="p">,</span> <span class="n">andZ</span> <span class="nv">filterZ</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">andM</span> <span class="nv">filterM</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>finite filter type</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filterZ</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>filter z values mode</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filterM</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>filter m values mode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>new point finite filter</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(im)initWithZ:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithZ:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(im)initWithZ:">-initWithZ:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize, filter on x, y, and optionally z</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithZ</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">filterZ</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="n">z</span> <span class="nv">filterZ</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filterZ</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>filter z values mode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>new point finite filter</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(im)initWithM:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithM:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(im)initWithM:">-initWithM:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize, filter on x, y, and optionally m</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithM</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">filterM</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="n">m</span> <span class="nv">filterM</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filterM</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>filter m values mode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>new point finite filter</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)SFPointFiniteFilter(im)initWithZ:andM:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithZ:andM:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)SFPointFiniteFilter(im)initWithZ:andM:">-initWithZ:<wbr>andM:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize, filter on x, y, and optionally z and m</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithZ</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">filterZ</span> <span class="nf">andM</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">filterM</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="n">z</span> <span class="nv">filterZ</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">andM</span> <span class="nv">filterM</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filterZ</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>filter z values mode</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filterM</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>filter m values mode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>new point finite filter</p>
                       </div>
                     </section>
                   </div>
