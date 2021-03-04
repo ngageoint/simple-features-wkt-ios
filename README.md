@@ -40,7 +40,7 @@ NSString *text = [SFWTGeometryWriter writeGeometry:geometry];
 
 ### Build ###
 
-[![Build & Test](https://github.com/ngageoint/simple-features-wkt-ios/workflows/Build%20&%20Test/badge.svg)](https://github.com/ngageoint/simple-features-wkt-ios/actions?query=workflow%3A%22Build+%26+Test%22)
+[![Build & Test](https://github.com/ngageoint/simple-features-wkt-ios/workflows/Build%20&%20Test/badge.svg)](https://github.com/ngageoint/simple-features-wkt-ios/actions/workflows/build-test.yml)
 
 Build this repository using Xcode and/or CocoaPods:
 
