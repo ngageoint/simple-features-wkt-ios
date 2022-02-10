@@ -493,8 +493,8 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     [SFWTGeometryTestUtils compareGeometriesWithExpected:compareGeometry andActual:geometryFromText andDelta:delta];
     
-    SFGeometryEnvelope *envelope = [SFGeometryEnvelopeBuilder buildEnvelopeWithGeometry:compareGeometry];
-    SFGeometryEnvelope *envelopeFromText = [SFGeometryEnvelopeBuilder buildEnvelopeWithGeometry:geometryFromText];
+    SFGeometryEnvelope *envelope = [compareGeometry envelope];
+    SFGeometryEnvelope *envelopeFromText = [geometryFromText envelope];
     
     [SFWTGeometryTestUtils compareEnvelopesWithExpected:envelope andActual:envelopeFromText andDelta:delta];
 }

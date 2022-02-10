@@ -61,12 +61,12 @@ Include this repository by specifying it in a Podfile using a supported option.
 
 Pull from [CocoaPods](https://cocoapods.org/pods/sf-wkt-ios):
 
-    pod 'sf-wkt-ios', '~> 2.0.0'
+    pod 'sf-wkt-ios', '~> 2.0.1'
 
 Pull from GitHub:
 
     pod 'sf-wkt-ios', :git => 'https://github.com/ngageoint/simple-features-wkt-ios.git', :branch => 'master'
-    pod 'sf-wkt-ios', :git => 'https://github.com/ngageoint/simple-features-wkt-ios.git', :tag => '2.0.0'
+    pod 'sf-wkt-ios', :git => 'https://github.com/ngageoint/simple-features-wkt-ios.git', :tag => '2.0.1'
 
 Include as local project:
 
