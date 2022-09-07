@@ -20,7 +20,7 @@ static SFGeometry *TEST_GEOMETRY;
 static NSString *TEST_TEXT;
 
 -(void) setUp{
-    TEST_GEOMETRY = [[SFPoint alloc] initWithXValue:1.0 andYValue:1.0];
+    TEST_GEOMETRY = [SFPoint pointWithXValue:1.0 andYValue:1.0];
     TEST_TEXT = @"POINT (1.0 1.0)";
 }
 

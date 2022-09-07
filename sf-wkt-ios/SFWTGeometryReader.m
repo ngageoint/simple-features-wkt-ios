@@ -253,7 +253,7 @@
     double x = [_reader readDouble];
     double y = [_reader readDouble];
     
-    SFPoint *point = [[SFPoint alloc] initWithHasZ:hasZ andHasM:hasM andXValue:x andYValue:y];
+    SFPoint *point = [SFPoint pointWithHasZ:hasZ andHasM:hasM andXValue:x andYValue:y];
     
     if(hasZ || hasM){
         if(hasZ){
@@ -288,7 +288,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        lineString = [[SFLineString alloc] initWithHasZ:hasZ andHasM:hasM];
+        lineString = [SFLineString lineStringWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFPoint *point = [self readPointWithHasZ:hasZ andHasM:hasM];
@@ -312,7 +312,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        polygon = [[SFPolygon alloc] initWithHasZ:hasZ andHasM:hasM];
+        polygon = [SFPolygon polygonWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFLineString *ring = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
@@ -336,7 +336,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        multiPoint = [[SFMultiPoint alloc] initWithHasZ:hasZ andHasM:hasM];
+        multiPoint = [SFMultiPoint multiPointWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFPoint *point = nil;
@@ -365,7 +365,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        multiLineString = [[SFMultiLineString alloc] initWithHasZ:hasZ andHasM:hasM];
+        multiLineString = [SFMultiLineString multiLineStringWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFLineString *lineString = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
@@ -389,7 +389,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        multiPolygon = [[SFMultiPolygon alloc] initWithHasZ:hasZ andHasM:hasM];
+        multiPolygon = [SFMultiPolygon multiPolygonWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFPolygon *polygon = [self readPolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
@@ -413,7 +413,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        geometryCollection = [[SFGeometryCollection alloc] initWithHasZ:hasZ andHasM:hasM];
+        geometryCollection = [SFGeometryCollection geometryCollectionWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFGeometry *geometry = [self readWithFilter:filter inType:SF_GEOMETRYCOLLECTION andExpectedType:[SFGeometry class]];
@@ -433,7 +433,7 @@
      
      if([self leftParenthesisOrEmpty]){
          
-         multiCurve = [[SFGeometryCollection alloc] initWithHasZ:hasZ andHasM:hasM];
+         multiCurve = [SFGeometryCollection geometryCollectionWithHasZ:hasZ andHasM:hasM];
          
          do {
              SFCurve *curve = nil;
@@ -461,7 +461,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        multiSurface = [[SFGeometryCollection alloc] initWithHasZ:hasZ andHasM:hasM];
+        multiSurface = [SFGeometryCollection geometryCollectionWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFSurface *surface = nil;
@@ -493,7 +493,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        circularString = [[SFCircularString alloc] initWithHasZ:hasZ andHasM:hasM];
+        circularString = [SFCircularString circularStringWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFPoint *point = [self readPointWithHasZ:hasZ andHasM:hasM];
@@ -517,7 +517,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        compoundCurve = [[SFCompoundCurve alloc] initWithHasZ:hasZ andHasM:hasM];
+        compoundCurve = [SFCompoundCurve compoundCurveWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFLineString *lineString = nil;
@@ -549,7 +549,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        curvePolygon = [[SFCurvePolygon alloc] initWithHasZ:hasZ andHasM:hasM];
+        curvePolygon = [SFCurvePolygon curvePolygonWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFCurve *ring = nil;
@@ -581,7 +581,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        polyhedralSurface = [[SFPolyhedralSurface alloc] initWithHasZ:hasZ andHasM:hasM];
+        polyhedralSurface = [SFPolyhedralSurface polyhedralSurfaceWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFPolygon *polygon = [self readPolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
@@ -605,7 +605,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        tin = [[SFTIN alloc] initWithHasZ:hasZ andHasM:hasM];
+        tin = [SFTIN tinWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFPolygon *polygon = [self readPolygonWithFilter:filter andHasZ:hasZ andHasM:hasM];
@@ -629,7 +629,7 @@
     
     if([self leftParenthesisOrEmpty]){
         
-        triangle = [[SFTriangle alloc] initWithHasZ:hasZ andHasM:hasM];
+        triangle = [SFTriangle triangleWithHasZ:hasZ andHasM:hasM];
         
         do {
             SFLineString *ring = [self readLineStringWithFilter:filter andHasZ:hasZ andHasM:hasM];
