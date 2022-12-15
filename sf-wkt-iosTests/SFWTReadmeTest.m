@@ -8,8 +8,6 @@
 
 #import "SFWTReadmeTest.h"
 #import "SFWTTestUtils.h"
-#import "SFGeometry.h"
-#import "SFPoint.h"
 #import "SFWTGeometryReader.h"
 #import "SFWTGeometryWriter.h"
 #import "SFWTGeometryTestUtils.h"

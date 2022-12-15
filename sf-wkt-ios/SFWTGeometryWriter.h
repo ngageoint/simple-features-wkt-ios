@@ -6,19 +6,11 @@
 //  Copyright © 2020 NGA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "SFGeometry.h"
-#import "SFPoint.h"
-#import "SFLineString.h"
-#import "SFPolygon.h"
 #import "SFMultiPoint.h"
 #import "SFMultiLineString.h"
 #import "SFMultiPolygon.h"
-#import "SFGeometryCollection.h"
 #import "SFCircularString.h"
 #import "SFCompoundCurve.h"
-#import "SFCurvePolygon.h"
-#import "SFPolyhedralSurface.h"
 #import "SFTIN.h"
 #import "SFTriangle.h"
 
