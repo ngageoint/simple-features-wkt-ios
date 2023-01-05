@@ -51,10 +51,10 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
 
 -(void) write: (SFGeometry *) geometry{
     
-    enum SFGeometryType geometryType = geometry.geometryType;
+    NSString *name = [self name:geometry];
     
     // Write the geometry type
-    [_text appendFormat:@"%@ ", [SFGeometryTypes name:geometryType]];
+    [_text appendFormat:@"%@ ", name];
 
     BOOL hasZ = geometry.hasZ;
     BOOL hasM = geometry.hasM;
@@ -68,6 +68,8 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
         }
         [_text appendString:@" "];
     }
+    
+    enum SFGeometryType geometryType = geometry.geometryType;
     
     switch (geometryType) {
             
@@ -122,6 +124,25 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
             [NSException raise:@"Geometry Not Supported" format:@"Geometry Type not supported: %d", geometryType];
     }
     
+}
+
+-(NSString *) name: (SFGeometry *) geometry{
+    enum SFGeometryType type = geometry.geometryType;
+    if(![geometry isEmpty]){
+        switch (type){
+            case SF_MULTILINESTRING:
+                {
+                    SFLineString *lineString = [((SFMultiLineString *) geometry) lineStringAtIndex:0];
+                    if([lineString isKindOfClass:[SFCircularString class]]){
+                        type = SF_MULTICURVE;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    return [SFGeometryTypes name:type];
 }
 
 -(void) writeWrappedPoint: (SFPoint *) point{
@@ -218,7 +239,12 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
             if(i > 0){
                 [_text appendString:@", "];
             }
-            [self writeLineString:[multiLineString lineStringAtIndex:i]];
+            SFLineString *lineString = [multiLineString lineStringAtIndex:i];
+            if([lineString isKindOfClass:[SFCircularString class]]){
+                [self write:lineString];
+            }else{
+                [self writeLineString:lineString];
+            }
         }
         
         [_text appendString:@")"];

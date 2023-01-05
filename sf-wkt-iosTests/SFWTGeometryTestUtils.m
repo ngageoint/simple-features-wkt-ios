@@ -405,6 +405,27 @@
     return lineString;
 }
 
++(SFCircularString *) createCircularStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [self createCircularStringWithHasZ:hasZ andHasM:hasM andClosed:false];
+}
+
++(SFCircularString *) createCircularStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andClosed: (BOOL) closed{
+    
+    SFCircularString *circularString = [SFCircularString circularStringWithHasZ:hasZ andHasM:hasM];
+    
+    int num = 2 + [SFWTTestUtils randomIntLessThan:9];
+    
+    for(int i = 0; i < num; i++){
+        [circularString addPoint:[self createPointWithHasZ:hasZ andHasM:hasM]];
+    }
+    
+    if(closed){
+        [circularString addPoint:[circularString.points objectAtIndex:0]];
+    }
+    
+    return circularString;
+}
+
 +(SFPolygon *) createPolygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     
     SFPolygon *polygon = [SFPolygon polygonWithHasZ:hasZ andHasM:hasM];
@@ -439,6 +460,19 @@
     
     for(int i = 0; i < num; i++){
         [multiLineString addLineString:[self createLineStringWithHasZ:hasZ andHasM:hasM]];
+    }
+    
+    return multiLineString;
+}
+
++(SFMultiLineString *) createMultiLineStringOfCircularStringsWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    
+    SFMultiLineString *multiLineString = [SFMultiLineString multiLineStringWithHasZ:hasZ andHasM:hasM];
+    
+    int num = 1 + [SFWTTestUtils randomIntLessThan:5];
+    
+    for(int i = 0; i < num; i++){
+        [multiLineString addLineString:[self createCircularStringWithHasZ:hasZ andHasM:hasM]];
     }
     
     return multiLineString;

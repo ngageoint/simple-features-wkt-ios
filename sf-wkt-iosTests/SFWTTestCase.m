@@ -69,6 +69,22 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     }
 }
 
+-(void) testMultiLineStringWithCircularStrings {
+    
+    for (int i = 0; i < GEOMETRIES_PER_TEST; i++) {
+
+        SFMultiLineString *multiLineString = [SFWTGeometryTestUtils createMultiLineStringOfCircularStringsWithHasZ:[SFWTTestUtils coinFlip] andHasM:[SFWTTestUtils coinFlip]];
+        
+        NSString *text = [SFWTGeometryTestUtils writeTextWithGeometry:multiLineString];
+        
+        SFGeometryCollection *geometry = [SFGeometryCollection geometryCollectionWithGeometries:multiLineString.geometries];
+        
+        SFGeometry *geometry2 = [SFWTGeometryTestUtils readGeometryWithText:text];
+        
+        [self geometryTester:geometry withCompare:geometry2];
+    }
+}
+
 -(void) testMultiCurveWithLineStrings{
 
     // Test a pre-created WKB saved as the abstract MultiCurve type with

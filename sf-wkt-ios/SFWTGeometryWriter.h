@@ -56,6 +56,15 @@
 -(void) write: (SFGeometry *) geometry;
 
 /**
+ * Get the well-known text writable geometry name
+ *
+ * @param geometry
+ *            geometry
+ * @return geometry name
+ */
+-(NSString *) name: (SFGeometry *) geometry;
+
+/**
  * Write a Point
  *
  * @param point
