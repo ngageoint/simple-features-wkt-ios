@@ -4,7 +4,7 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## [2.1.1](https://github.com/ngageoint/simple-features-wkt-ios/releases/tag/2.1.1) (TBD)
+## [2.1.1](https://github.com/ngageoint/simple-features-wkt-ios/releases/tag/2.1.1) (01-10-2023)
 
 * sf-ios 4.1.1
 * MultiLineString with CircularStrings text encoding fix to use MultiCurve and CircularStrings
