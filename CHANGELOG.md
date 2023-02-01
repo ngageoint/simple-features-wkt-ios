@@ -4,9 +4,9 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 2.1.2 (TBD)
+## [2.1.2](https://github.com/ngageoint/simple-features-wkt-ios/releases/tag/2.1.2) (02-01-2023)
 
-* TBD
+* sf-ios 4.1.2
 
 ## [2.1.1](https://github.com/ngageoint/simple-features-wkt-ios/releases/tag/2.1.1) (01-10-2023)
 
