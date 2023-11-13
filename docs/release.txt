@@ -1,0 +1,20 @@
+
+Xcode Build:
+
+xcodebuild -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios build
+
+Xcode Test:
+
+xcodebuild test -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios -destination 'platform=iOS Simulator,name=iPhone 15'
+
+CocoaPods Local Lint:
+
+pod lib lint sf-wkt-ios.podspec --use-libraries
+
+CocoaPods GitHub Release Lint:
+
+pod spec lint sf-wkt-ios.podspec --use-libraries
+
+CocoaPods Deploy To Trunk:
+
+pod trunk push sf-wkt-ios.podspec --use-libraries
