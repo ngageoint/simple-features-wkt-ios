@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'sf-wkt-ios'
-  s.version          = '2.1.4'
+  s.version          = '2.1.5'
   s.license          =  {:type => 'MIT', :file => 'LICENSE' }
   s.summary          = 'iOS SDK for Simple Features Well-Known Text'
   s.homepage         = 'https://github.com/ngageoint/simple-features-wkt-ios'
