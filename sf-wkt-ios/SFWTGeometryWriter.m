@@ -69,7 +69,7 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
         [_text appendString:@" "];
     }
     
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     
     switch (geometryType) {
             
@@ -127,7 +127,7 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
 }
 
 -(NSString *) name: (SFGeometry *) geometry{
-    enum SFGeometryType type = geometry.geometryType;
+    SFGeometryType type = geometry.geometryType;
     if(![geometry isEmpty]){
         switch (type){
             case SF_MULTILINESTRING:

@@ -23,14 +23,14 @@
  * @param hasM
  *            has m
  */
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
  * Get the geometry type
  *
  * @return geometry type
  */
--(enum SFGeometryType) geometryType;
+-(SFGeometryType) geometryType;
 
 /**
  * Has z values

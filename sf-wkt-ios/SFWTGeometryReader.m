@@ -68,7 +68,7 @@
     return [self readWithFilter:filter inType:SF_NONE andExpectedType:expectedType];
 }
 
--(SFGeometry *) readWithFilter: (NSObject<SFGeometryFilter> *) filter inType: (enum SFGeometryType) containingType andExpectedType: (Class) expectedType{
+-(SFGeometry *) readWithFilter: (NSObject<SFGeometryFilter> *) filter inType: (SFGeometryType) containingType andExpectedType: (Class) expectedType{
     
     SFGeometry *geometry = nil;
     
@@ -77,7 +77,7 @@
     
     if(geometryTypeInfo != nil){
         
-        enum SFGeometryType geometryType = [geometryTypeInfo geometryType];
+        SFGeometryType geometryType = [geometryTypeInfo geometryType];
         BOOL hasZ = [geometryTypeInfo hasZ];
         BOOL hasM = [geometryTypeInfo hasM];
         
@@ -167,7 +167,7 @@
         BOOL hasM = NO;
         
         // Determine the geometry type
-        enum SFGeometryType geometryType = [SFGeometryTypes fromName:geometryTypeValue];
+        SFGeometryType geometryType = [SFGeometryTypes fromName:geometryTypeValue];
 
         // If not found, check if the geometry type has Z and/or M suffix
         if (geometryType == SF_NONE) {
@@ -702,7 +702,7 @@
     return [self readGeometryWithReader:reader andFilter:filter inType:SF_NONE andExpectedType:expectedType];
 }
 
-+(SFGeometry *) readGeometryWithReader: (SFTextReader *) reader andFilter: (NSObject<SFGeometryFilter> *) filter inType: (enum SFGeometryType) containingType andExpectedType: (Class) expectedType{
++(SFGeometry *) readGeometryWithReader: (SFTextReader *) reader andFilter: (NSObject<SFGeometryFilter> *) filter inType: (SFGeometryType) containingType andExpectedType: (Class) expectedType{
     SFWTGeometryReader *geometryReader = [[SFWTGeometryReader alloc] initWithReader:reader];
     return [geometryReader readWithFilter:filter inType:containingType andExpectedType:expectedType];
 }
@@ -950,7 +950,7 @@
  *            geometry or null
  * @return true if passes filter
  */
-+(BOOL) filter: (NSObject<SFGeometryFilter> *) filter geometry: (SFGeometry *) geometry inType: (enum SFGeometryType) containingType{
++(BOOL) filter: (NSObject<SFGeometryFilter> *) filter geometry: (SFGeometry *) geometry inType: (SFGeometryType) containingType{
     return filter == nil || geometry == nil || [filter filterGeometry:geometry inType:containingType];
 }
 

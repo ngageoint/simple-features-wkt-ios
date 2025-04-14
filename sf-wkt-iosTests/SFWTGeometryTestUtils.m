@@ -62,7 +62,7 @@
     }else{
         [SFWTTestUtils assertNotNil:actual];
         
-        enum SFGeometryType geometryType = expected.geometryType;
+        SFGeometryType geometryType = expected.geometryType;
         switch(geometryType){
             case SF_GEOMETRY:
                 [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
@@ -317,7 +317,7 @@
     
     SFTextReader *reader = [[SFTextReader alloc] initWithText:text];
     SFWTGeometryTypeInfo *geometryTypeInfo = [SFWTGeometryReader readGeometryTypeWithReader:reader];
-    enum SFGeometryType expectedGeometryType = [geometryTypeInfo geometryType];
+    SFGeometryType expectedGeometryType = [geometryTypeInfo geometryType];
     switch (expectedGeometryType) {
         case SF_MULTICURVE:
         case SF_MULTISURFACE:

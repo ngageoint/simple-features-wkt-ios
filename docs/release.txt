@@ -5,7 +5,7 @@ xcodebuild -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios build
 
 Xcode Test:
 
-xcodebuild test -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios -destination 'platform=iOS Simulator,name=iPhone 15'
+xcodebuild test -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios -destination 'platform=iOS Simulator,name=iPhone 16'
 
 CocoaPods Local Lint:
 

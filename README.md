@@ -53,7 +53,7 @@ Open sf-wkt-ios.xcworkspace in Xcode or build from command line:
 
 Run tests from Xcode or from command line:
 
-    xcodebuild test -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios -destination 'platform=iOS Simulator,name=iPhone 15'
+    xcodebuild test -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios -destination 'platform=iOS Simulator,name=iPhone 16'
 
 ### Include Library ###
 
@@ -61,12 +61,12 @@ Include this repository by specifying it in a Podfile using a supported option.
 
 Pull from [CocoaPods](https://cocoapods.org/pods/sf-wkt-ios):
 
-    pod 'sf-wkt-ios', '~> 2.1.4'
+    pod 'sf-wkt-ios', '~> 3.0.0'
 
 Pull from GitHub:
 
     pod 'sf-wkt-ios', :git => 'https://github.com/ngageoint/simple-features-wkt-ios.git', :branch => 'master'
-    pod 'sf-wkt-ios', :git => 'https://github.com/ngageoint/simple-features-wkt-ios.git', :tag => '2.1.4'
+    pod 'sf-wkt-ios', :git => 'https://github.com/ngageoint/simple-features-wkt-ios.git', :tag => '3.0.0'
 
 Include as local project:
 

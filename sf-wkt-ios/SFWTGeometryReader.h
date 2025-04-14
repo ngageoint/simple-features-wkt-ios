@@ -127,7 +127,7 @@
  *
  *  @return geometry
  */
--(SFGeometry *) readWithFilter: (NSObject<SFGeometryFilter> *) filter inType: (enum SFGeometryType) containingType andExpectedType: (Class) expectedType;
+-(SFGeometry *) readWithFilter: (NSObject<SFGeometryFilter> *) filter inType: (SFGeometryType) containingType andExpectedType: (Class) expectedType;
 
 /**
  * Read the geometry type info
@@ -480,7 +480,7 @@
  *
  *  @return geometry
  */
-+(SFGeometry *) readGeometryWithReader: (SFTextReader *) reader andFilter: (NSObject<SFGeometryFilter> *) filter inType: (enum SFGeometryType) containingType andExpectedType: (Class) expectedType;
++(SFGeometry *) readGeometryWithReader: (SFTextReader *) reader andFilter: (NSObject<SFGeometryFilter> *) filter inType: (SFGeometryType) containingType andExpectedType: (Class) expectedType;
 
 /**
  * Read the geometry type info

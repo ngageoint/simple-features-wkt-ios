@@ -13,7 +13,7 @@
 /**
  * Geometry type
  */
-@property (nonatomic) enum SFGeometryType geometryType;
+@property (nonatomic) SFGeometryType geometryType;
 
 /**
  * Has Z values flag
@@ -29,7 +29,7 @@
 
 @implementation SFWTGeometryTypeInfo
 
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super init];
     if(self != nil){
         self.geometryType = geometryType;
@@ -39,7 +39,7 @@
     return self;
 }
 
--(enum SFGeometryType) geometryType{
+-(SFGeometryType) geometryType{
     return _geometryType;
 }
 

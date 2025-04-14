@@ -4,9 +4,9 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 2.1.5 (TBD)
+## 3.0.0
 
-* TBD
+* sf-ios 5.0.0 with NS_ENUM support for Objective-C and Swift interoperability.
 
 ## [2.1.4](https://github.com/ngageoint/simple-features-wkt-ios/releases/tag/2.1.4) (04-08-2024)
 
