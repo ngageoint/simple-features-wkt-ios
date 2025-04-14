@@ -7,10 +7,9 @@
 //
 
 #import "SFWTReadmeTest.h"
-#import "SFWTTestUtils.h"
-#import "SFWTGeometryReader.h"
-#import "SFWTGeometryWriter.h"
-#import "SFWTGeometryTestUtils.h"
+@import SimpleFeatures;
+@import SimpleFeaturesWKT;
+@import TestUtils;
 
 @implementation SFWTReadmeTest
 
@@ -45,7 +44,7 @@ static NSString *TEST_TEXT;
     // NSString *text = ...
     
     SFGeometry *geometry = [SFWTGeometryReader readGeometryWithText:text];
-    enum SFGeometryType geometryType = geometry.geometryType;
+//    SFGeometryType geometryType = geometry.geometryType;
     
     return geometry;
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2020 NGA. All rights reserved.
 //
 
-#import "SFWTGeometryWriter.h"
+#import <SimpleFeaturesWKT/SFWTGeometryWriter.h>
 
 @interface SFWTGeometryWriter()
 
@@ -69,7 +69,7 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
         [_text appendString:@" "];
     }
     
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     
     switch (geometryType) {
             
@@ -121,13 +121,13 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
             [self writeTriangle:(SFTriangle *)geometry];
             break;
         default:
-            [NSException raise:@"Geometry Not Supported" format:@"Geometry Type not supported: %d", geometryType];
+            [NSException raise:@"Geometry Not Supported" format:@"Geometry Type not supported: %ld", geometryType];
     }
     
 }
 
 -(NSString *) name: (SFGeometry *) geometry{
-    enum SFGeometryType type = geometry.geometryType;
+    SFGeometryType type = geometry.geometryType;
     if(![geometry isEmpty]){
         switch (type){
             case SF_MULTILINESTRING:

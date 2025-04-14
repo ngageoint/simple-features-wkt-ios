@@ -6,13 +6,8 @@
 //  Copyright © 2020 NGA. All rights reserved.
 //
 
-#import "SFMultiPoint.h"
-#import "SFMultiLineString.h"
-#import "SFMultiPolygon.h"
-#import "SFCircularString.h"
-#import "SFCompoundCurve.h"
-#import "SFTIN.h"
-#import "SFTriangle.h"
+#import <Foundation/Foundation.h>
+#import <SimpleFeatures/SimpleFeatures.h>
 
 /**
  * Well Known Text writer

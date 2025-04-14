@@ -24,7 +24,7 @@ View the latest [Appledoc](http://ngageoint.github.io/simple-features-wkt-ios/do
 // NSString *text = ...
 
 SFGeometry *geometry = [SFWTGeometryReader readGeometryWithText:text];
-enum SFGeometryType geometryType = geometry.geometryType;
+SFGeometryType geometryType = geometry.geometryType;
 
 ```
 
@@ -40,43 +40,48 @@ NSString *text = [SFWTGeometryWriter writeGeometry:geometry];
 
 ### Build ###
 
-[![Build & Test](https://github.com/ngageoint/simple-features-wkt-ios/workflows/Build%20&%20Test/badge.svg)](https://github.com/ngageoint/simple-features-wkt-ios/actions/workflows/build-test.yml)
+[![Build](https://github.com/ngageoint/simple-features-wkt-ios/actions/workflows/build.yml/badge.svg)](https://github.com/ngageoint/simple-features-wkt-ios/actions/workflows/build.yml)
 
-Build this repository using Xcode and/or CocoaPods:
+Build this repository using SPM:
 
-    pod repo update
-    pod install
+    swift build
 
-Open sf-wkt-ios.xcworkspace in Xcode or build from command line:
+Open the Swift Package in Xcode:
 
-    xcodebuild -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios build
+    open Package.swift
 
 Run tests from Xcode or from command line:
 
-    xcodebuild test -workspace 'sf-wkt-ios.xcworkspace' -scheme sf-wkt-ios -destination 'platform=iOS Simulator,name=iPhone 15'
+    swift test
 
 ### Include Library ###
 
-Include this repository by specifying it in a Podfile using a supported option.
+Add a package dependency version:
 
-Pull from [CocoaPods](https://cocoapods.org/pods/sf-wkt-ios):
+    .package(url: "https://github.com/ngageoint/simple-features-wkt-ios", from: "3.0.0"),
 
-    pod 'sf-wkt-ios', '~> 2.1.4'
+    # Or specific branch:
 
-Pull from GitHub:
+    .package(url: "https://github.com/ngageoint/simple-features-wkt-ios", branch: "release/3.0.0"),
+    
+    # Or as a local dependency:        
 
-    pod 'sf-wkt-ios', :git => 'https://github.com/ngageoint/simple-features-wkt-ios.git', :branch => 'master'
-    pod 'sf-wkt-ios', :git => 'https://github.com/ngageoint/simple-features-wkt-ios.git', :tag => '2.1.4'
+    .package(name: "simple-features-wkt-ios", path: "../simple-features-wkt-ios"),
 
-Include as local project:
+Use it in a target:
 
-    pod 'sf-wkt-ios', :path => '../simple-features-wkt-ios'
+        .target(
+            name: "MyLibrary",
+            dependencies: [
+                .product(name: "SimpleFeaturesWKT", package: "simple-features-wkt-ios")
+            ]
+        )
 
 ### Swift ###
 
-To use from Swift, import the sf-wkt-ios bridging header from the Swift project's bridging header
+To use from Swift, import the framework:
 
-    #import "sf-wkt-ios-Bridging-Header.h"
+    import SimpleFeaturesWKT
 
 #### Read ####
 
