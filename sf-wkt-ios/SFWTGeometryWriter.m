@@ -121,7 +121,7 @@ static double DECIMAL_NUMBER_NEGATIVE_INFINITY;
             [self writeTriangle:(SFTriangle *)geometry];
             break;
         default:
-            [NSException raise:@"Geometry Not Supported" format:@"Geometry Type not supported: %d", geometryType];
+            [NSException raise:@"Geometry Not Supported" format:@"Geometry Type not supported: %ld", geometryType];
     }
     
 }

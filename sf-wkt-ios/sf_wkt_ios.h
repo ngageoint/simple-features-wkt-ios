@@ -9,5 +9,8 @@
 #ifndef sf_wkt_ios_sf_wkt_ios_h
 #define sf_wkt_ios_sf_wkt_ios_h
 
+#import "SFWTGeometryReader.h"
+#import "SFWTGeometryTypeInfo.h"
+#import "SFWTGeometryWriter.h"
 
 #endif

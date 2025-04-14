@@ -8,8 +8,9 @@
 
 #import "SFWTGeometryTestUtils.h"
 #import "SFWTTestUtils.h"
-#import "SFWTGeometryWriter.h"
-#import "SFWTGeometryReader.h"
+@import sf_ios;
+@import sf_wkt_ios;
+@import XCTest;
 
 @implementation SFWTGeometryTestUtils
 
@@ -118,7 +119,7 @@
                 [self compareTriangleWithExpected:(SFTriangle *)expected andActual:(SFTriangle *)actual andDelta:delta];
                 break;
             default:
-                [NSException raise:@"Geometry Type Not Supported" format:@"Geometry Type not supported: %d", geometryType];
+                [NSException raise:@"Geometry Type Not Supported" format:@"Geometry Type not supported: %ld", geometryType];
         }
     }
     
@@ -126,7 +127,7 @@
 }
 
 +(void) compareBaseGeometryAttributesWithExpected: (SFGeometry *) expected andActual: (SFGeometry *) actual{
-    [SFWTTestUtils assertEqualIntWithValue:expected.geometryType andValue2:actual.geometryType];
+    XCTAssertEqual(expected.geometryType, actual.geometryType);
     [SFWTTestUtils assertEqualBoolWithValue:expected.hasZ andValue2:actual.hasZ];
     [SFWTTestUtils assertEqualBoolWithValue:expected.hasM andValue2:actual.hasM];
 }
@@ -326,7 +327,7 @@
         default:
             break;
     }
-    [SFWTTestUtils assertEqualIntWithValue:expectedGeometryType andValue2:geometry.geometryType];
+    XCTAssertEqual(expectedGeometryType, geometry.geometryType);
     if(validateZM){
         [SFWTTestUtils assertEqualBoolWithValue:[geometryTypeInfo hasZ] andValue2:geometry.hasZ];
         [SFWTTestUtils assertEqualBoolWithValue:[geometryTypeInfo hasM] andValue2:geometry.hasM];

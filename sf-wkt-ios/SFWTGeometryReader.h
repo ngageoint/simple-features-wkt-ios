@@ -6,16 +6,8 @@
 //  Copyright © 2020 NGA. All rights reserved.
 //
 
-#import "SFTextReader.h"
-#import "SFMultiPoint.h"
-#import "SFMultiLineString.h"
-#import "SFMultiPolygon.h"
-#import "SFCircularString.h"
-#import "SFCompoundCurve.h"
-#import "SFTIN.h"
-#import "SFTriangle.h"
+@import sf_ios;
 #import "SFWTGeometryTypeInfo.h"
-#import "SFGeometryFilter.h"
 
 /**
  * Well Known Text reader

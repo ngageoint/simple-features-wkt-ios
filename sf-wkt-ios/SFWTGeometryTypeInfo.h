@@ -6,7 +6,8 @@
 //  Copyright © 2020 NGA. All rights reserved.
 //
 
-#import "SFGeometryTypes.h"
+@import Foundation;
+@import sf_ios;
 
 /**
  * Geometry type info

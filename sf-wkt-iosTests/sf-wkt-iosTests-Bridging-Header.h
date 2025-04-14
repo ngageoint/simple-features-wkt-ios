@@ -6,6 +6,6 @@
 //  Copyright © 2020 NGA. All rights reserved.
 //
 
-#import "sf-wkt-ios-Bridging-Header.h"
+@import sf_wkt_ios;
 #import "SFWTTestUtils.h"
 #import "SFWTGeometryTestUtils.h"
