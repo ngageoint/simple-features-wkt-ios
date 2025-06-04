@@ -6,10 +6,11 @@
 //  Copyright © 2020 NGA. All rights reserved.
 //
 
+@import XCTest;
+@import SimpleFeaturesWKT;
+
 #import "SFWTGeometryTestUtils.h"
 #import "SFWTTestUtils.h"
-#import "SFWTGeometryWriter.h"
-#import "SFWTGeometryReader.h"
 
 @implementation SFWTGeometryTestUtils
 
@@ -62,7 +63,7 @@
     }else{
         [SFWTTestUtils assertNotNil:actual];
         
-        enum SFGeometryType geometryType = expected.geometryType;
+        SFGeometryType geometryType = expected.geometryType;
         switch(geometryType){
             case SF_GEOMETRY:
                 [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
@@ -118,7 +119,7 @@
                 [self compareTriangleWithExpected:(SFTriangle *)expected andActual:(SFTriangle *)actual andDelta:delta];
                 break;
             default:
-                [NSException raise:@"Geometry Type Not Supported" format:@"Geometry Type not supported: %d", geometryType];
+                [NSException raise:@"Geometry Type Not Supported" format:@"Geometry Type not supported: %ld", geometryType];
         }
     }
     
@@ -126,7 +127,7 @@
 }
 
 +(void) compareBaseGeometryAttributesWithExpected: (SFGeometry *) expected andActual: (SFGeometry *) actual{
-    [SFWTTestUtils assertEqualIntWithValue:expected.geometryType andValue2:actual.geometryType];
+    XCTAssertEqual(expected.geometryType, actual.geometryType);
     [SFWTTestUtils assertEqualBoolWithValue:expected.hasZ andValue2:actual.hasZ];
     [SFWTTestUtils assertEqualBoolWithValue:expected.hasM andValue2:actual.hasM];
 }
@@ -317,7 +318,7 @@
     
     SFTextReader *reader = [[SFTextReader alloc] initWithText:text];
     SFWTGeometryTypeInfo *geometryTypeInfo = [SFWTGeometryReader readGeometryTypeWithReader:reader];
-    enum SFGeometryType expectedGeometryType = [geometryTypeInfo geometryType];
+    SFGeometryType expectedGeometryType = [geometryTypeInfo geometryType];
     switch (expectedGeometryType) {
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
@@ -326,7 +327,7 @@
         default:
             break;
     }
-    [SFWTTestUtils assertEqualIntWithValue:expectedGeometryType andValue2:geometry.geometryType];
+    XCTAssertEqual(expectedGeometryType, geometry.geometryType);
     if(validateZM){
         [SFWTTestUtils assertEqualBoolWithValue:[geometryTypeInfo hasZ] andValue2:geometry.hasZ];
         [SFWTTestUtils assertEqualBoolWithValue:[geometryTypeInfo hasM] andValue2:geometry.hasM];

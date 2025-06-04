@@ -7,6 +7,9 @@
 //
 
 import XCTest
+import SimpleFeatures
+import SimpleFeaturesWKT
+import TestUtils
 
 /**
 * README example tests
@@ -39,7 +42,7 @@ class SFWTSwiftReadmeTest: XCTestCase{
         // var text: String = ...
         
         let geometry: SFGeometry = SFWTGeometryReader.readGeometry(withText: text)
-        let geometryType: SFGeometryType = geometry.geometryType
+//        let geometryType: SFGeometryType = geometry.geometryType
         
         return geometry
     }
